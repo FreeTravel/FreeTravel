@@ -5,4 +5,5 @@ package com.ma.freetravel.bean;
  */
 
 public class MovieLv {
+//
 }
