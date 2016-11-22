@@ -52,6 +52,9 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
             holder.mGridView.setNumColumns(3);
         }
         List<Dynamic.DataBean.TrendsListBean.ImageListBean> list = bean.getImage_list();
+        if (list.size() > 9) {
+            list = list.subList(0, 9);
+        }
         GridViewAdapter adapter = new GridViewAdapter(list, getContext());
         holder.mGridView.setAdapter(adapter);
 
