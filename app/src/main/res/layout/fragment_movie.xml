@@ -1,17 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.ma.freetravel.fragment.MovieFragment">
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dip"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/anim_loading" />
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_movie_vp_height"
-        android:id="@+id/vp_movie"/>
-
-    <ListView
+        android:id="@+id/vp_movie"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/vp_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv_movie"/>
-</LinearLayout>
+        android:id="@+id/rclv_movie"/>
+</RelativeLayout>

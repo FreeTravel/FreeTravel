@@ -62,8 +62,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             return new Holder(mHeaderView);
         return onCreate(parent, viewType);
     }
-
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if(getItemViewType(position) == TYPE_HEADER) return;

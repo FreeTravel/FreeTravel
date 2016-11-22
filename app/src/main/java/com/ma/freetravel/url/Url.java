@@ -14,8 +14,21 @@ public class Url {
 
     //边走边看
     //轮播
-    public  static String Vp_Path="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829";
     public static String Head_VpPath="http://apk.zdomo.com/ueditor/net/";
+    public  static String Vp_Path="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829";
+  //轮播的下一步 电影合辑
+   public static String Vp_second_Path(int pageNum){
+       return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";
+   }
+    //轮播的下两步 电影合辑  具体
+    public static String Vp_three_Path(int pageNum){
+//        http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum=0&id=117&tmp=0.2841932578811236
+        return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";
+    }
+    public static String Head_Vp_three="http://apk.zdomo.com";
+    //轮播的后第三步 电影推荐   上一步电影合辑中的Content（是html5做好的 ）头部是LinkUrl是跳转一个网页
+
+
     //轮播点击跳转
     public static String turnPath="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=20&tmp=0.6233542039472624";
     //二次跳转     tmp=0.33767933309475884?
