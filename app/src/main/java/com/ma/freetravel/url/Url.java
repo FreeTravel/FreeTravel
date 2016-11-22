@@ -61,4 +61,13 @@ public class Url {
     //大洋洲
     public static String OceaniaPath="http://www.qiugonglue.com/api/v3/place/nav_place_list?client_name=QGLMain&client_version=6.0.1&os_version=17&platform=android&screen_size=720x1280&tm=1479727811894&type=continent&type_value=8&uuid=133524328529283&sign=6644240b0607721ee176e4f32451f17a";
 
+
+    /**
+     * 动态地址
+     * @param pageNum 页数
+     * @return
+     */
+    public static String getSpace(int pageNum){
+        return "http://www.qiugonglue.com/api/v3/trends/new_trends_list?client_name=QGLMain&client_version=6.0.1&limit=20&order_by=desc&os_version=19&p="+pageNum+"&platform=android&screen_size=720x1280&uuid=133524328529283&sign=7f8944b0762785cadf328f8951d5beb3";
+    }
 }
