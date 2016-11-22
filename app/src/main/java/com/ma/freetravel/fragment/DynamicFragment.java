@@ -1,14 +1,16 @@
 package com.ma.freetravel.fragment;
 
 
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ma.freetravel.R.id.listView;
+
 /**
  * 动态fragment
  */
@@ -38,7 +42,7 @@ public class DynamicFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView mEmptyView;
+    private TextView mEmptyView, footView;
     private ListView mListView;
     private SwipeRefreshLayout mRefreshLayout;
     private RequestParams mParams;
@@ -54,14 +58,11 @@ public class DynamicFragment extends Fragment {
         initData();
         initView(view);
         initListener();
-        getData();
-
-
+        getData(true);
         return view;
     }
 
     private void initData() {
-        mParams = getPathParams(true);
         mData = new ArrayList<>();
         mAdapter = new DynamicAdapter(mData, getContext());
     }
@@ -70,41 +71,83 @@ public class DynamicFragment extends Fragment {
         if (!isFlush)
             currentPage++;
         else
-            currentPage = 0;
+            currentPage = 1;
         return new RequestParams(Url.getSpace(currentPage));
     }
 
     private void initView(View view) {
         mEmptyView = (TextView) view.findViewById(R.id.emptyView);
-        mListView = (ListView) view.findViewById(R.id.listView);
+        mListView = (ListView) view.findViewById(listView);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeView);
         mListView.setEmptyView(mEmptyView);
         AnimationDrawable anim = (AnimationDrawable) mEmptyView.getBackground();
         anim.start();
+        footView = new TextView(getContext());
+        footView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT
+                , AbsListView.LayoutParams.MATCH_PARENT));
+        footView.setText("加载更多");
+        footView.setGravity(Gravity.CENTER);
+        footView.setTextSize(20);
+        mListView.addFooterView(new View(getContext()));
         mListView.setAdapter(mAdapter);
+        mRefreshLayout.setColorSchemeColors(Color.parseColor("#B0E0E6"),
+                Color.parseColor("#AEEEEE"),
+                Color.parseColor("#97FFFF"),
+                Color.parseColor("#96CDCD"));
+
+
     }
 
     private void initListener() {
-    }
-
-    public void getData() {
-        mXHttp = x.http().get(mParams, new Callback.CacheCallback<String>() {
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData(true);
+            }
+        });
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            boolean isBottom = false;
 
             @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == SCROLL_STATE_IDLE && isBottom) {
+                    mListView.addFooterView(footView);
+                    mRefreshLayout.setRefreshing(true);
+                    getData(false);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                isBottom = firstVisibleItem + visibleItemCount == totalItemCount;
+            }
+        });
+
+    }
+
+    public void getData(final boolean isFlush) {
+        mParams = getPathParams(isFlush);
+        mXHttp = x.http().get(mParams, new Callback.CacheCallback<String>() {
+            @Override
             public void onSuccess(String result) {
-                Log.e("DynamicFragment", result);
                 Gson gson = new Gson();
                 Dynamic dynamic = gson.fromJson(result, Dynamic.class);
                 if (dynamic.getMessage().equals("success")) {
-                    mAdapter.addData(dynamic.getData().getTrends_list());
+                    if (isFlush) {
+                        mAdapter.refulshData(dynamic.getData().getTrends_list());
+                    } else {
+                        mAdapter.addData(dynamic.getData().getTrends_list());
+                    }
                 } else {
                     Toast.makeText(getContext(), "网络似乎有些问题", Toast.LENGTH_SHORT).show();
                 }
+                hideRefreshView();
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 Toast.makeText(getContext(), "网络似乎有些问题", Toast.LENGTH_SHORT).show();
+                hideRefreshView();
             }
 
             @Override
@@ -122,6 +165,15 @@ public class DynamicFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    private void hideRefreshView() {
+        if (mRefreshLayout.isRefreshing()) {
+            mRefreshLayout.setRefreshing(false);
+        }
+        if (mListView != null) {
+            mListView.removeFooterView(footView);
+        }
     }
 
     @Override

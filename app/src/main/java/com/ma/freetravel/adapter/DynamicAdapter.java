@@ -1,8 +1,10 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
@@ -40,9 +42,12 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
         holder.txt_time.setText(" " + bean.getHuman_ctime());
         holder.txt_content.setText(bean.getContent());
         holder.txt_favorite.setText(" " + bean.getFav_count());
-        Picasso.with(getContext())
-                .load(bean.getAuthor().getAvatar())
-                .into(holder.headView);
+        String avatar = bean.getAuthor().getAvatar();
+        if(!TextUtils.isEmpty(avatar)){
+            Picasso.with(getContext())
+                    .load(avatar)
+                    .into(holder.headView);
+        }
         int imge_count = Integer.parseInt(bean.getImage_count());
         if (imge_count == 1) {
             holder.mGridView.setNumColumns(1);
@@ -57,6 +62,12 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
         }
         GridViewAdapter adapter = new GridViewAdapter(list, getContext());
         holder.mGridView.setAdapter(adapter);
+        holder.mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
 
 
         return convertView;
