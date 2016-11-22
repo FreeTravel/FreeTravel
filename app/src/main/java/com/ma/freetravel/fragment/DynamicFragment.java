@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.ma.freetravel.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 动态fragment
  */
 public class DynamicFragment extends Fragment {
 
@@ -24,7 +24,7 @@ public class DynamicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dynamic, container, false);
+        View view = inflater.inflate(R.layout.fragment_dynamic, container, false);
+        return view;
     }
-
 }
