@@ -2,4 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--电影模块 viewPager的高度-->
+    <dimen name="fragment_movie_vp_height">200dp</dimen>
+    <dimen name="fragment_movie_lv_padding">16dp</dimen>
 </resources>
