@@ -125,7 +125,7 @@ public class ShowPictureActivity extends Activity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 ShowPictureActivity.this.finish();
-                overridePendingTransition(0, 0);
+                overridePendingTransition(0,0);
             }
 
             @Override
