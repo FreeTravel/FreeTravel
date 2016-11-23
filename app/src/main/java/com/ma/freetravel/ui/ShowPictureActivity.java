@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.ma.freetravel.R;
@@ -98,6 +99,7 @@ public class ShowPictureActivity extends Activity {
         //执行动画
         mView.animate()
                 .setDuration(300)
+                .setInterpolator(new DecelerateInterpolator())
                 .scaleX(1f)
                 .scaleY(1f)
                 .translationX(0)
@@ -108,6 +110,7 @@ public class ShowPictureActivity extends Activity {
     private void runExitAnimation() {
         ViewPropertyAnimator animator = mView.animate()
                 .setDuration(300)
+                .setInterpolator(new DecelerateInterpolator())
                 .scaleX(mScaleX)
                 .scaleY(mScaleY)
                 .translationX(mDeltaX)
@@ -141,6 +144,7 @@ public class ShowPictureActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             runExitAnimation();
+            return false;
         }
         return super.onKeyDown(keyCode, event);
     }
