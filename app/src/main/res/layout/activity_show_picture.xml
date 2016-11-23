@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_h_l"
+    android:background="#e8686565"
     tools:context="com.ma.freetravel.ui.ShowPictureActivity">
 
     <ImageView
