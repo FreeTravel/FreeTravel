@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+    android:layout_height="350dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/country_iv"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:text="哈哈"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:layout_gravity="left|bottom"
+            android:id="@+id/tvcn_country"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="HAHHA"
+            android:layout_marginLeft="20dp"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:layout_gravity="left|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            android:id="@+id/tven_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
