@@ -17,7 +17,7 @@
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:background="@drawable/btn_bgt"
+        android:background="@mipmap/btn_bgt"
         android:onClick="btnClick"
         android:text="跳过"/>
 
