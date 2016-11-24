@@ -16,7 +16,8 @@
         <com.ma.freetravel.widget.CircleImageView
             android:id="@+id/item_img_headicon"
             android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_height="60dp"
+            android:src="@drawable/mfw_app_icon_new"/>
 
         <TextView
             android:id="@+id/item_txt_name"
