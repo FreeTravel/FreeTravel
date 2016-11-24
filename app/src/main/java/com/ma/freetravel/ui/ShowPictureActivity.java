@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
@@ -110,7 +111,7 @@ public class ShowPictureActivity extends Activity {
     private void runExitAnimation() {
         ViewPropertyAnimator animator = mView.animate()
                 .setDuration(300)
-                .setInterpolator(new DecelerateInterpolator())
+                .setInterpolator(new AccelerateInterpolator())
                 .scaleX(mScaleX)
                 .scaleY(mScaleY)
                 .translationX(mDeltaX)
@@ -125,7 +126,7 @@ public class ShowPictureActivity extends Activity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 ShowPictureActivity.this.finish();
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
 
             @Override

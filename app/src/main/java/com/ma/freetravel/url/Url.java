@@ -70,4 +70,6 @@ public class Url {
     public static String getSpace(int pageNum){
         return "http://www.qiugonglue.com/api/v3/trends/new_trends_list?client_name=QGLMain&client_version=6.0.1&limit=20&order_by=desc&os_version=19&p="+pageNum+"&platform=android&screen_size=720x1280&uuid=133524328529283&sign=7f8944b0762785cadf328f8951d5beb3";
     }
+
+    public static String firstPage = "http://www.qiugonglue.com/api/v3/main/home_json?platform=android&client_version=6.0.1&place_id=0&place_ids=2011002%2C2012011%2C&callback=getDataJson";
 }
