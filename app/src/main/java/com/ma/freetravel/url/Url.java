@@ -11,7 +11,6 @@ public class Url {
     //动态
     public static  String DynamicPath="http://www.qiugonglue.com/api/v3/trends/new_trends_list?client_name=QGLMain&client_version=6.0.1&limit=20&order_by=desc&os_version=17&p=1&platform=android&screen_size=720x1280&uuid=133524328529283&sign=b7b76d8ff653eaa12aed6a0ad698d0af";   //轻松一刻
 
-
     //边走边看
     //轮播
     public static String Head_VpPath="http://apk.zdomo.com/ueditor/net/";
@@ -25,7 +24,7 @@ public class Url {
 //        http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum=0&id=117&tmp=0.2841932578811236
         return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";
     }
-    public static String Head_Vp_three="http://apk.zdomo.com";
+    public static String Head3="http://apk.zdomo.com";
     //轮播的后第三步 电影推荐   上一步电影合辑中的Content（是html5做好的 ）头部是LinkUrl是跳转一个网页
 
 

@@ -3,4 +3,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--电影类型-->
+    <string name="columnName1_movie">电影推荐</string>
+    <string name="columnName2_movie"></string>
+    <string name="columnName3_movie"></string>
+    <string name="columnName4_movie">电影原声</string>
+    <string name="columnName5_movie">轻松一刻</string>
 </resources>

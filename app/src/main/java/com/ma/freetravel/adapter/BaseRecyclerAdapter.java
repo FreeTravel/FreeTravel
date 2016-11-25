@@ -20,6 +20,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private List<T> mDatas = new ArrayList<>();
 
     private View mHeaderView;
+    private View mEmptyView;
 
     private OnItemClickListener mListener;
 
@@ -32,8 +33,13 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         notifyItemInserted(0);
     }
 
-    public View getHeaderView() {
-        return mHeaderView;
+    public void setEmptyView(View emptyView) {
+        mEmptyView = emptyView;
+        notifyDataSetChanged();
+    }
+
+    public View getEmptyView() {
+        return mEmptyView;
     }
 
     public void addDatas(List<T> datas) {
@@ -120,7 +126,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     }
 
     public abstract RecyclerView.ViewHolder onCreate(ViewGroup parent, final int viewType);
-    public abstract void onBind(RecyclerView.ViewHolder viewHolder, int RealPosition, T data);
+    public abstract void onBind(RecyclerView.ViewHolder viewHolder, int realPosition, T data);
 
     public class Holder extends RecyclerView.ViewHolder {
         public Holder(View itemView) {

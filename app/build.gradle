@@ -29,11 +29,10 @@ dependencies {
     compile 'com.android.support:design:23.0.0'
     compile 'com.android.support:cardview-v7:23.0.0'
     compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.2'
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    compile project(':pullToRefresh_Library')
 }

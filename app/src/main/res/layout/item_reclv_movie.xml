@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fragment_movie_image_item_lv"
+    android:orientation="horizontal"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+<ImageView
+    android:layout_width="@dimen/fragment_movie_image_item_lv"
+    android:layout_height="match_parent"
+    android:src="@mipmap/ic_launcher"
+    android:id="@+id/iv_item_reclv"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/fragment_movie_lv_padding"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_tv_item_reclv"
+            android:singleLine="true"
+            android:text="XX"/>
+
+        <TextView
+            android:id="@+id/introduction_tv_item_reclv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="XX"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/fragment_movie_item_lv_shipin"
+            android:layout_height="@dimen/fragment_movie_item_lv_shipin"
+            android:src="@mipmap/play"
+            android:visibility="invisible"
+            android:id="@+id/shipin_iv_item_reclv"/>
+    </LinearLayout>
+
+</LinearLayout>
