@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.ma.freetravel.fragment.BournFragment;
 import com.ma.freetravel.fragment.DynamicFragment;
@@ -15,7 +17,7 @@ import com.ma.freetravel.fragment.MovieFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
+public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     private RadioGroup rg;
     private FrameLayout container;
@@ -23,11 +25,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private BournFragment bournFragment;
     private DynamicFragment dynamicFragment;
     private MovieFragment movieFragment;
+    private boolean isFirstPage = true;
+    private long currentTime = 0;
     //存Fragment数据的
-    private List<Fragment> fragmentList =  new ArrayList<>();
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     //当前展示的Fragment的位置
     private int currentIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void initFragment() {
-        homeFragment=new HomeFragment();
-        bournFragment=new BournFragment();
-        dynamicFragment=new DynamicFragment();
-        movieFragment=new MovieFragment();
+        homeFragment = new HomeFragment();
+        bournFragment = new BournFragment();
+        dynamicFragment = new DynamicFragment();
+        movieFragment = new MovieFragment();
         fragmentList.add(homeFragment);
         fragmentList.add(bournFragment);
         fragmentList.add(dynamicFragment);
         fragmentList.add(movieFragment);
         //设置默认显示的Fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.container_main,fragmentList.get(0)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container_main, fragmentList.get(0)).commit();
 
     }
 
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.rb_home:
                 //替换模块  fragment
                 switchFragmet(0);
@@ -84,13 +89,42 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         Fragment fragment = fragmentList.get(targetIndex);
         //获取当前显示的Fragment
         Fragment currentFragment = fragmentList.get(currentIndex);
-        if (fragment.isAdded()){
+        if (fragment.isAdded()) {
             transaction.show(fragment).hide(currentFragment).commit();
-        }else {
-            transaction.add(R.id.container_main,fragment).hide(currentFragment).commit();
+        } else {
+            transaction.add(R.id.container_main, fragment).hide(currentFragment).commit();
         }
         //显示后将要显示的Fragment的下标给当前的下标
-        currentIndex=targetIndex;
+        currentIndex = targetIndex;
+        if (targetIndex == 0) {
+            isFirstPage = true;
+        } else {
+            isFirstPage = false;
+        }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isFirstPage && ((HomeFragment) fragmentList.get(0)).getView().canGoBack()) {
+                ((HomeFragment) fragmentList.get(0)).getView().goBack();
+            } else {
+                exit();
+            }
+
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        long millis = System.currentTimeMillis();
+        if (millis - currentTime > 2000) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            currentTime = millis;
+        } else {
+            finish();
+        }
+    }
 }

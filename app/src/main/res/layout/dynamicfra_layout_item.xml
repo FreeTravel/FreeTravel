@@ -17,7 +17,7 @@
             android:id="@+id/item_img_headicon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/mfw_app_icon_new"/>
+            android:src="@mipmap/mfw_app_icon_new"/>
 
         <TextView
             android:id="@+id/item_txt_name"
@@ -57,7 +57,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@id/item_graidView"
-            android:src="@drawable/like"
+            android:src="@mipmap/like"
             />
 
 
