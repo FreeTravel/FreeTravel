@@ -1,6 +1,5 @@
 package com.ma.freetravel;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,11 +9,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.ma.freetravel.fragment.BournFragment;
@@ -22,19 +21,18 @@ import com.ma.freetravel.fragment.DynamicFragment;
 import com.ma.freetravel.fragment.HomeFragment;
 import com.ma.freetravel.fragment.MoiveFragment2;
 import com.ma.freetravel.fragment.MovieFragment;
-import com.ma.freetravel.ui.CountryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
 
 
-    private RadioGroup rg;
+
     private FrameLayout container;
     private HomeFragment homeFragment;
     private BournFragment bournFragment;
@@ -55,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         initview();
         //获取Fragment的集合内容
         initFragment();
-        rg.setOnCheckedChangeListener(this);
+
 
         mDrawerLayout = ((DrawerLayout) findViewById(R.id.drawlayout));
         mNavigationView = ((NavigationView) findViewById(R.id.id_nv_menu));
         toolbar = ((Toolbar) findViewById(R.id.toolbar));
-        toolbar.setTitle("AAAAAAAAAAAAAAAA");
+        toolbar.setTitle("自由行");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 MainActivity.this
@@ -79,9 +77,19 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                        Intent intent=new Intent(MainActivity.this,CountryActivity.class);
-                        startActivity(intent);
+                        switchFragmet(0);
+                        break;
+                    case R.id.nav_messages:
+                        switchFragmet(1);
+                        break;
+                    case R.id.nav_friends:
+                        switchFragmet(2);
+                        break;
+                    case R.id.nav_discussion:
+                        switchFragmet(3);
+                        break;
                 }
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 return false;
             }
         });
@@ -120,31 +128,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void initview() {
-        rg = ((RadioGroup) findViewById(R.id.rg));
+
         container = ((FrameLayout) findViewById(R.id.container_main));
 
     }
 
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.rb_home:
-                //替换模块  fragment
-                switchFragmet(0);
-                break;
-            case R.id.rb_search:
-                switchFragmet(1);
-                break;
-            case R.id.rb_request:
-                switchFragmet(2);
-                break;
-            case R.id.rb_setting:
-                switchFragmet(3);
-                break;
-        }
-    }
 
     private void switchFragmet(int targetIndex) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
