@@ -12,9 +12,7 @@ import android.view.ViewGroup;
  * @param <F>类是继承RecyclerView.ViewHolder的footer视图
  *
  */
-public abstract class BaseRecyclerViewAdapter<H extends RecyclerView.ViewHolder,
-        VH extends RecyclerView.ViewHolder,
-        F extends RecyclerView.ViewHolder>
+public abstract class BaseRecyclerViewAdapter<H extends RecyclerView.ViewHolder, VH extends RecyclerView.ViewHolder, F extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private static final int TYPE_SECTION_HEADER = -1;
@@ -52,6 +50,7 @@ public abstract class BaseRecyclerViewAdapter<H extends RecyclerView.ViewHolder,
      * 初始化
      */
     private void init() {
+//        总数量
         count = countItems();
         initAllArraysLength(count);
         setupItemViewType();

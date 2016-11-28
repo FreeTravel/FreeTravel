@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fragment_movie_vp_height"
+    android:orientation="vertical">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_hear_lv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_movie_vp_height">
+    </android.support.v4.view.ViewPager>
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_movie_lv_vp_point_height"
+        android:background="#72868181"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+        <TextView
+            android:id="@+id/rg_txt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+    </RadioGroup>
+</FrameLayout>

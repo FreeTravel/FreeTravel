@@ -17,7 +17,10 @@ public class Url {
     //边走边看
     //轮播
     public static String Head_VpPath="http://apk.zdomo.com/ueditor/net/";
-    public  static String Vp_Path="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829";
+    public static String Vp_Path(int pageNum){
+//        http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829
+        return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=4&tmp=0.5617492643658829";
+    }
   //轮播的下一步 电影合辑
    public static String Vp_second_Path(int pageNum){
        return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";

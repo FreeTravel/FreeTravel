@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
+
 /**
  * Created by tian on 2016/11/25.
  */
@@ -14,7 +15,6 @@ public class PullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
     public PullToRefreshRecyclerView(Context context) {
         super(context);
     }
-
     public PullToRefreshRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

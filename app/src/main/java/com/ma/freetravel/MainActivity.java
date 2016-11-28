@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.ma.freetravel.fragment.BournFragment;
 import com.ma.freetravel.fragment.DynamicFragment;
 import com.ma.freetravel.fragment.HomeFragment;
+import com.ma.freetravel.fragment.MoiveFragment2;
 import com.ma.freetravel.fragment.MovieFragment;
 import com.ma.freetravel.ui.CountryActivity;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private HomeFragment homeFragment;
     private BournFragment bournFragment;
     private DynamicFragment dynamicFragment;
-    private MovieFragment movieFragment;
+    private MoiveFragment2 movieFragment;
     private boolean isFirstPage = true;
     private long currentTime = 0;
     //存Fragment数据的
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         homeFragment = new HomeFragment();
         bournFragment = new BournFragment();
         dynamicFragment = new DynamicFragment();
-        movieFragment = new MovieFragment();
+        movieFragment = new MoiveFragment2();
         fragmentList.add(homeFragment);
         fragmentList.add(bournFragment);
         fragmentList.add(dynamicFragment);

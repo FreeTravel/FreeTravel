@@ -2,6 +2,7 @@ package com.ma.freetravel.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -62,7 +64,7 @@ public class MovieFragment extends Fragment implements OnItemClickListener, ICus
     }
 
     private void loadData() {
-        new OkHttpUtils(FlagData.FLAG_MOVIEBANNER, this).loadData(Url.Vp_Path);
+        new OkHttpUtils(FlagData.FLAG_MOVIEBANNER, this).loadData(Url.Vp_Path(0));
         new OkHttpUtils(FlagData.FLAG_MOVIELV, this).loadData(Url.lvPath);
     }
 
@@ -91,10 +93,9 @@ public class MovieFragment extends Fragment implements OnItemClickListener, ICus
     }
 
     private void setHeadToReclv() {
-//        View view = LayoutInflater.from(getContext()).inflate(R.layout.head_reclv, null);
+        RecyclerViewHeader header = RecyclerViewHeader.fromXml(getContext(), R.layout.convenitent);
         convenientBanner = (ConvenientBanner) LayoutInflater.from(getContext()).inflate(R.layout.convenitent, null);
         convenientBanner.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 280));
-
 //        轮播指示器
         convenientBanner.setPages(new CBViewHolderCreator<NetImageHolderView>() {
             @Override
@@ -107,13 +108,14 @@ public class MovieFragment extends Fragment implements OnItemClickListener, ICus
                 //设置指示器的方向
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
                 .setOnItemClickListener(this);
-
-        reclAdapter.setHeaderView(convenientBanner);
+        header.attachTo(rcLv);
     }
 
     //轮播的点击事件
     @Override
     public void onItemClick(int position) {
+        MovieBanner movieBanner = movieBanners.get(position);
+        Intent intent=new Intent();
 
     }
 

@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Administrator on 2016/11/25.
  */
 
-public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyViewHolder,> {
+public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyViewHolder> {
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     private View mHeaderView;
@@ -32,7 +32,6 @@ public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyVi
         this.context = context;
         this.movieLvs = movieLvs;
     }
-
     public void addDatas(List<MovieLv> movieLvList) {
         movieLvs.addAll(movieLvList);
         //刷新所有丶数据
@@ -65,8 +64,6 @@ public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType==TYPE_HEADER){
-        }
         View view = LayoutInflater.from(context).inflate(R.layout.item_reclv_movie, parent, false);
         return new MyViewHolder(view);
     }
@@ -74,11 +71,7 @@ public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
-        if (getItemViewType(position) == TYPE_HEADER) {//头视图
-
-        }else if (getItemViewType(position)==TYPE_NORMAL){
-            MovieLv movieLv = movieLvs.get(position);
+        MovieLv movieLv = movieLvs.get(position);
             String linkUrl = movieLv.getLinkUrl();
             int columnID = movieLv.getColumnID();
             if (!TextUtils.isEmpty(linkUrl)) {
@@ -104,7 +97,36 @@ public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyVi
                     holder.title_tv.setText("[" + R.string.columnName5_movie + "]");
                     break;
             }
-        }
+//        if (getItemViewType(position) == TYPE_HEADER) {//头视图
+//
+//        }else if (getItemViewType(position)==TYPE_NORMAL){
+//            MovieLv movieLv = movieLvs.get(position);
+//            String linkUrl = movieLv.getLinkUrl();
+//            int columnID = movieLv.getColumnID();
+//            if (!TextUtils.isEmpty(linkUrl)) {
+//                holder.shipin_iv.setVisibility(View.VISIBLE);
+//            }
+//            Glide.with(context).load(Url.Head3 + movieLv.getPicURL()).into(holder.iv);
+//            holder.introduction_tv.setText(movieLv.getIntroduction());
+//            switch (columnID) {
+//                case 1:
+////                    holder.title_tv.setText("[" + R.string.columnName1_movie + "]");
+//                    holder.title_tv.setText( R.string.columnName1_movie );
+//                    break;
+//                case 2:
+//                    holder.title_tv.setText("[" + R.string.columnName2_movie + "]");
+//                    break;
+//                case 3:
+//                    holder.title_tv.setText("[" + R.string.columnName3_movie + "]");
+//                    break;
+//                case 4:
+//                    holder.title_tv.setText("[" + R.string.columnName4_movie + "]");
+//                    break;
+//                case 5:
+//                    holder.title_tv.setText("[" + R.string.columnName5_movie + "]");
+//                    break;
+//            }
+//        }
     }
 
     @Override
@@ -127,14 +149,7 @@ public class MovieRcLvAdapter extends RecyclerView.Adapter<MovieRcLvAdapter.MyVi
         }
     }
     public class HeaderHolder extends RecyclerView.ViewHolder{
-
         public HeaderHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    public class EmptyHolder extends RecyclerView.ViewHolder {
-        public EmptyHolder(View itemView) {
             super(itemView);
         }
     }
