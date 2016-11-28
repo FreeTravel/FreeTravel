@@ -42,7 +42,7 @@ public class CityRvAdapter extends RecyclerView.Adapter<CityRvAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         switch (list.get(position)) {
-            case 0:
+            case 2:
                 holder.textView.setText("最新动态");
                 CityItem1Adapter adadpter=new CityItem1Adapter(cityBeans.getData().getIndex_trends().getTrends_list(),context);
                 holder.myListView.setAdapter(adadpter);
@@ -52,7 +52,7 @@ public class CityRvAdapter extends RecyclerView.Adapter<CityRvAdapter.MyViewHold
                 CityItem2Adapter adapter=new CityItem2Adapter(cityBeans.getData().getCms_list(),context);
                 holder.myListView.setAdapter(adapter);
                 break;
-            case 2:
+            case 0:
                 holder.textView.setText("好好玩");
                 CityItem3Adapter adapter1=new CityItem3Adapter(cityBeans.getData().getRecommend_pin_list().getEntertainment(),context);
                 holder.gridview.setAdapter(adapter1);

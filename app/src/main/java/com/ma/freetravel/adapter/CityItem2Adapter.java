@@ -1,7 +1,6 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.CityBeans;
-import com.ma.freetravel.ui.WebViewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -61,14 +59,7 @@ public class CityItem2Adapter extends BaseAdapter {
         viewHolder.tv_title.setText(cmsListBean.getTitle());
         viewHolder.tv_num.setText(cmsListBean.getLike_count());
         Picasso.with(context).load(cmsListBean.getCover_image()).into(viewHolder.iv_pic);
-        viewHolder.iv_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, WebViewActivity.class);
-                intent.putExtra("path",cmsListBean.getUrl());
-                context.startActivity(intent);
-            }
-        });
+
 
         return convertView;
     }

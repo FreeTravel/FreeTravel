@@ -22,7 +22,7 @@ import com.ma.freetravel.R;
 import com.ma.freetravel.adapter.CountryAdapter;
 import com.ma.freetravel.bean.PlaceBean;
 import com.ma.freetravel.ui.CountryActivity;
-import com.ma.freetravel.ui.MapActivity;
+import com.ma.freetravel.ui.QueryActivity;
 import com.ma.freetravel.url.Url;
 
 import org.xutils.common.Callback;
@@ -71,10 +71,9 @@ public class BournFragment extends Fragment {
         btn_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MapActivity.class);
+                Intent intent=new Intent(getActivity(), QueryActivity.class);
                 String city = et_input.getText().toString().trim();
                 intent.putExtra("city",city);
-                Log.e("aaa","===0"+city);
                 getActivity().startActivity(intent);
             }
         });
