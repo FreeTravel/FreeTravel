@@ -1,10 +1,16 @@
 package com.ma.freetravel.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.model.CameraPosition;
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
+import com.amap.api.maps2d.model.MarkerOptions;
 import com.ma.freetravel.R;
 
 public class MapActivity extends AppCompatActivity {
@@ -25,6 +31,25 @@ public class MapActivity extends AppCompatActivity {
             aMap = mMapView.getMap();
             aMap.setMapType(AMap.MAP_TYPE_NORMAL);
 
+            Intent intent = getIntent();
+            float lat = 116.397972f;
+            float lon = 39.906901f;
+            String title = "北京";
+            if (intent != null) {
+                lon = Float.parseFloat(intent.getStringExtra("lon"));
+                lat = Float.parseFloat(intent.getStringExtra("lat"));
+                title = intent.getStringExtra("title");
+            }
+            LatLng latLng = new LatLng(lat, lon);
+            aMap.moveCamera(CameraUpdateFactory
+                    .newCameraPosition(new CameraPosition(
+                            latLng,
+                            9,
+                            0, 0
+                    )));
+            final Marker marker = aMap.addMarker(new MarkerOptions().
+                    position(latLng).
+                    title(title));
         }
     }
 
