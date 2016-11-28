@@ -79,7 +79,7 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
                 Intent intent = new Intent(getContext(), ShowPictureActivity.class);
                 intent.putExtra("params", picture);
                 getContext().startActivity(intent);
-                ((Activity) getContext()).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                ((Activity) getContext()).overridePendingTransition(0,0);
             }
         });
 

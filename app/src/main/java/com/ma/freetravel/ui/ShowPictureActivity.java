@@ -99,7 +99,7 @@ public class ShowPictureActivity extends Activity {
         //获取图片的颜色，设置背景色
         //执行动画
         mView.animate()
-                .setDuration(300)
+                .setDuration(500)
                 .setInterpolator(new DecelerateInterpolator())
                 .scaleX(1f)
                 .scaleY(1f)

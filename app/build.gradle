@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -34,5 +39,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
     compile files('libs/AMap_Location_V3.1.0_20161027.jar')
     compile files('libs/AMap_Search_V3.6.1_20161122.jar')
-    compile files('libs/Android_Map3D_SDK_V4.1.2_20161104.jar')
+    compile files('libs/Volley.jar')
+    compile files('libs/Amap_2DMap_V2.9.2_20161026.jar')
 }
