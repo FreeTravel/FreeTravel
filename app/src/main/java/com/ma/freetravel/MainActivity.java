@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 return false;
             }
         });
-
-//        getSupportActionBar().hide();
     }
 
     @Override
