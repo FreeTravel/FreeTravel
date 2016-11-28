@@ -1,7 +1,6 @@
 package com.ma.freetravel.fragment;
 
 
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ma.freetravel.R;
 import com.ma.freetravel.adapter.MPagerAdapter;
-import com.ma.freetravel.adapter.MovieListAdapter;
+import com.ma.freetravel.adapter.MovieLVAdapter;
 import com.ma.freetravel.bean.MovieBanner;
 import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.jiekou.ICustom;
@@ -45,7 +44,7 @@ public class MoiveFragment2 extends Fragment implements ICustom {
     private List<MovieBanner> movieBanners = new ArrayList<>();
     private List<MovieLv> movieLvs = new ArrayList<>();
     private PullToRefreshListView pulv;
-    private MovieListAdapter movieListAdapter;
+    private MovieLVAdapter movieListAdapter;
     private List<ImageView> imageViews = new ArrayList<>();
     private MPagerAdapter mPagerAdapter;
     private ViewPager viewPager;
@@ -139,7 +138,7 @@ public class MoiveFragment2 extends Fragment implements ICustom {
         ListView listView = pulv.getRefreshableView();
         listView.setEmptyView(empty);//添加空视图
         listView.addHeaderView(hearView);//添加头视图
-        movieListAdapter = new MovieListAdapter(movieLvs, getContext());
+        movieListAdapter = new MovieLVAdapter(movieLvs, getContext());
         pulv.setAdapter(movieListAdapter);
         //下拉刷新 上拉加载
         pulv.setMode(PullToRefreshBase.Mode.BOTH);

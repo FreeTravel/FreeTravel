@@ -17,40 +17,41 @@ import java.util.List;
  * Created by tian on 2016/11/25.
  */
 
-public class MovieListAdapter extends BaseListViewAdapter<MovieLv> {
+public class MovieLVAdapter extends BaseListViewAdapter<MovieLv>{
     private List<MovieLv> movieLvs;
-private Context context;
-    public MovieListAdapter(List<MovieLv> data, Context context) {
+    private Context context;
+
+    public MovieLVAdapter(List<MovieLv> data, Context context) {
         super(data, context);
-        this.movieLvs=data;
-        this.context=context;
+        this.movieLvs = data;
+        this.context = context;
     }
 
 
     @Override
     public View getItemView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder=null;
+        ViewHolder holder = null;
         if (convertView == null) {
-            convertView=getInflater().inflate(R.layout.item_reclv_movie,parent,false);
-            holder=new ViewHolder(convertView);
+            convertView = getInflater().inflate(R.layout.item_reclv_movie, parent, false);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
-            holder=((ViewHolder) convertView.getTag());
+        } else {
+            holder = ((ViewHolder) convertView.getTag());
         }
         MovieLv movieLv = movieLvs.get(position);
         int columnID = movieLv.getColumnID();
         Glide.with(context).load(Url.Head3 + movieLv.getPicURL()).into(holder.iv);
-        if (columnID==1){
+        if (columnID == 1) {
             holder.introduction_tv.setText(movieLv.getIntroduction());
             holder.shipin_iv.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.introduction_tv.setText(movieLv.getTitle());
             holder.shipin_iv.setVisibility(View.GONE);
         }
         switch (columnID) {
             case 1:
 //                    holder.title_tv.setText("[" + R.string.columnName1_movie + "]");
-                holder.title_tv.setText( R.string.columnName1_movie );
+                holder.title_tv.setText(R.string.columnName1_movie);
                 break;
             case 2:
                 holder.title_tv.setText("[" + R.string.columnName2_movie + "]");
@@ -67,7 +68,8 @@ private Context context;
         }
         return convertView;
     }
-    public class ViewHolder  {
+
+    public class ViewHolder {
         private ImageView iv;
         private ImageView shipin_iv;
         private TextView title_tv;
