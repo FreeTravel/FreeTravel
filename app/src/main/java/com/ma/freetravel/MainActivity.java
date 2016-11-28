@@ -1,5 +1,7 @@
 package com.ma.freetravel;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,17 +23,18 @@ import com.ma.freetravel.fragment.DynamicFragment;
 import com.ma.freetravel.fragment.HomeFragment;
 import com.ma.freetravel.fragment.MoiveFragment2;
 import com.ma.freetravel.fragment.MovieFragment;
+import com.ma.freetravel.ui.CollectionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity  {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
-
-
 
     private FrameLayout container;
     private HomeFragment homeFragment;
@@ -88,11 +91,35 @@ public class MainActivity extends AppCompatActivity  {
                     case R.id.nav_discussion:
                         switchFragmet(3);
                         break;
+                    case R.id.collection:
+                        Intent intent=new Intent(MainActivity.this, CollectionActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.clean:
+                        dilog();
+                        break;
+
                 }
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
                 return false;
             }
         });
+    }
+
+    private void dilog() {
+        SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("确认删除吗")
+                .setContentText("删除后将不可恢复")
+                .setConfirmText("Yes")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        //执行删除工作
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -128,9 +155,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     private void initview() {
-
         container = ((FrameLayout) findViewById(R.id.container_main));
-
     }
 
 

@@ -1,7 +1,15 @@
 [
     {
-        "merged": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\default_ptr_flip.png",
-        "source": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\default_ptr_flip.png"
+        "merged": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\indicator_arrow.png",
+        "source": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\default_ptr_flip.png",
+        "source": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\default_ptr_rotate.png",
+        "source": "F:\\Free\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\default_ptr_rotate.png"
     },
     {
         "merged": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\indicator_arrow.png",
@@ -10,5 +18,9 @@
     {
         "merged": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\default_ptr_rotate.png",
         "source": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\default_ptr_rotate.png"
+    },
+    {
+        "merged": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\default_ptr_flip.png",
+        "source": "E:\\1618\\FreeTravel\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\default_ptr_flip.png"
     }
 ]
