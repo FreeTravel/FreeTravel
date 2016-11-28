@@ -1,15 +1,18 @@
 package com.ma.freetravel.url;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * Created by 哈士奇爱吃苹果 on 2016/11/21.
  */
 public class Url {
     //首页
 
-    public static String HomePath="http://m.shijieyou.com/mobileJson/recommendItemList?client_name=QGLMain&place_id=&offset=10&_=1479728842996&callback=jsonp1";
+    public static String HomePath = "http://m.shijieyou.com/mobileJson/recommendItemList?client_name=QGLMain&place_id=&offset=10&_=1479728842996&callback=jsonp1";
 
     //动态
-    public static  String DynamicPath="http://www.qiugonglue.com/api/v3/trends/new_trends_list?client_name=QGLMain&client_version=6.0.1&limit=20&order_by=desc&os_version=17&p=1&platform=android&screen_size=720x1280&uuid=133524328529283&sign=b7b76d8ff653eaa12aed6a0ad698d0af";   //轻松一刻
+    public static String DynamicPath = "http://www.qiugonglue.com/api/v3/trends/new_trends_list?client_name=QGLMain&client_version=6.0.1&limit=20&order_by=desc&os_version=17&p=1&platform=android&screen_size=720x1280&uuid=133524328529283&sign=b7b76d8ff653eaa12aed6a0ad698d0af";   //轻松一刻
 
     //边走边看
     //轮播
@@ -28,6 +31,8 @@ public class Url {
     //轮播的后第三步 电影推荐   上一步电影合辑中的Content（是html5做好的 ）头部是LinkUrl是跳转一个网页
 
 
+    public static String Vp_Path = "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829";
+    public static String Head_VpPath = "http://apk.zdomo.com/ueditor/net/";
     //轮播点击跳转
     public static String turnPath="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=20&tmp=0.6233542039472624";
     //二次跳转     tmp=0.33767933309475884?

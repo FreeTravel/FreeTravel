@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.Dynamic;
 import com.ma.freetravel.bean.Picture;
+import com.ma.freetravel.ui.MapActivity;
 import com.ma.freetravel.ui.ShowPictureActivity;
 import com.ma.freetravel.widget.CircleImageView;
 import com.ma.freetravel.widget.OnMeasureGridView;
@@ -40,12 +41,17 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+            holder.txt_local.setVisibility(View.VISIBLE);
         }
-        Dynamic.DataBean.TrendsListBean bean = getItem(position);
+        final Dynamic.DataBean.TrendsListBean bean = getItem(position);
         holder.txt_name.setText(" " + bean.getAuthor().getUser_name());
         holder.txt_time.setText(" " + bean.getHuman_ctime());
         holder.txt_content.setText(bean.getContent());
         holder.txt_favorite.setText(" " + bean.getFav_count());
+        if (TextUtils.isEmpty(bean.getGeoinfo())) {
+            holder.txt_local.setVisibility(View.GONE);
+        }
+        holder.txt_local.setText(" " + bean.getGeoinfo());
         String avatar = bean.getAuthor().getAvatar();
         if (!TextUtils.isEmpty(avatar)) {
             Picasso.with(getContext())
@@ -79,7 +85,17 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
                 Intent intent = new Intent(getContext(), ShowPictureActivity.class);
                 intent.putExtra("params", picture);
                 getContext().startActivity(intent);
-                ((Activity) getContext()).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                ((Activity) getContext()).overridePendingTransition(0, 0);
+            }
+        });
+        holder.txt_local.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                intent.putExtra("lon", bean.getLon());
+                intent.putExtra("lat", bean.getLat());
+                intent.putExtra("title", bean.getGeoinfo());
+                getContext().startActivity(intent);
             }
         });
 
@@ -89,7 +105,7 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
 
     static class ViewHolder {
         CircleImageView headView;
-        TextView txt_name, txt_time, txt_content, txt_favorite;
+        TextView txt_name, txt_time, txt_content, txt_favorite, txt_local;
         OnMeasureGridView mGridView;
 
         public ViewHolder(View convertView) {
@@ -98,6 +114,7 @@ public class DynamicAdapter extends BaseListViewAdapter<Dynamic.DataBean.TrendsL
             txt_time = (TextView) convertView.findViewById(R.id.item_txt_time);
             txt_content = (TextView) convertView.findViewById(R.id.item_txt_content);
             txt_favorite = (TextView) convertView.findViewById(R.id.item_txt_favorite);
+            txt_local = (TextView) convertView.findViewById(R.id.item_txt_local);
             mGridView = (OnMeasureGridView) convertView.findViewById(R.id.item_graidView);
         }
     }

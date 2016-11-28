@@ -64,8 +64,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        if(mHeaderView != null && viewType == TYPE_HEADER)
-            return new Holder(mHeaderView);
+       if(mHeaderView != null && viewType == TYPE_HEADER)
+           return new Holder(mHeaderView);
         return onCreate(parent, viewType);
     }
     @Override

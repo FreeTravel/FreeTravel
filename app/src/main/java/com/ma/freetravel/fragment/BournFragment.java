@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import com.ma.freetravel.R;
 import com.ma.freetravel.adapter.CountryAdapter;
 import com.ma.freetravel.bean.PlaceBean;
 import com.ma.freetravel.ui.CountryActivity;
+import com.ma.freetravel.ui.QueryActivity;
 import com.ma.freetravel.url.Url;
 
 import org.xutils.common.Callback;
@@ -38,10 +41,12 @@ public class BournFragment extends Fragment {
     private ListView listView_place;
     private String[] adapterData=new String[]{"去哪玩","亚洲","欧洲","北美洲","非洲","南美洲","大洋洲"};
     private ArrayAdapter <String> lvAdapter;
-    private String urlPath;
+    private String urlPath=Url.PlayPath;
     private RecyclerView recyclerView_place;
     private List<PlaceBean.DataBean> datas=new ArrayList<>();
     private CountryAdapter countryAdapter;
+    private EditText et_input;
+    private Button btn_click;
 
     public BournFragment() {
         // Required empty public constructor
@@ -54,9 +59,24 @@ public class BournFragment extends Fragment {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_bourn, container, false);
         initView();
+        initButtonTurn();
+        httpRequest(urlPath);
         initAdapter();
         initListener();
         return view;
+    }
+
+    private void initButtonTurn() {
+
+        btn_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), QueryActivity.class);
+                String city = et_input.getText().toString().trim();
+                intent.putExtra("city",city);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
     private void initTurn() {
@@ -77,6 +97,8 @@ public class BournFragment extends Fragment {
     private void initView() {
         listView_place = ((ListView) view.findViewById(R.id.lv_place));
         recyclerView_place = ((RecyclerView) view.findViewById(R.id.rv_place));
+        et_input = ((EditText) view.findViewById(R.id.et_input));
+        btn_click = ((Button) view.findViewById(R.id.btn_click));
     }
 
 
@@ -130,7 +152,6 @@ public class BournFragment extends Fragment {
                 GridLayoutManager gridlayoutManager = new GridLayoutManager(getActivity(), 3);
                 gridlayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView_place.setLayoutManager(gridlayoutManager);
-//               countryAdapter.notifyDataSetChanged();
                 initTurn();
             }
 

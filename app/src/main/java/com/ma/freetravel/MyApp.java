@@ -13,5 +13,6 @@ public class MyApp extends Application {
         super.onCreate();
         //全局初始化
         x.Ext.init(this);
+
     }
 }

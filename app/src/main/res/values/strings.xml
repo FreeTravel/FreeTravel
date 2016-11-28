@@ -9,4 +9,6 @@
     <string name="columnName3_movie"></string>
     <string name="columnName4_movie">电影原声</string>
     <string name="columnName5_movie">轻松一刻</string>
+
+    <string name="app_open">马蜂窝·自由行</string>   <string name="app_close">马蜂窝·自由行</string>
 </resources>
