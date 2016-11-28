@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -26,6 +27,7 @@ public class ShowPictureActivity extends Activity {
     private float mScaleY;
     private float mDeltaX;
     private float mDeltaY;
+    private float src_width,src_height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,17 @@ public class ShowPictureActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_picture);
         mView = (ImageView) findViewById(R.id.img_show);
+        src_height = getResources().getDisplayMetrics().heightPixels;
+        src_width = getResources().getDisplayMetrics().widthPixels;
         Intent intent = getIntent();
         if (intent != null) {
             mPicture = (Picture) intent.getSerializableExtra("params");
             if (mPicture != null) {
+                float scale = getSale(mPicture.getRealWidth(),mPicture.getRealHeight());
+                Log.e("ShowPictureActivity", "scale:" + scale);
                 Picasso.with(this)
                         .load(mPicture.getUrl())
-                        .resize(mPicture.getRealWidth(), mPicture.getRealHeight())
+                        .resize((int) (mPicture.getRealWidth()*scale), (int) (mPicture.getRealHeight()*scale))
                         .into(mView, new Callback() {
                             @Override
                             public void onSuccess() {
@@ -61,6 +67,13 @@ public class ShowPictureActivity extends Activity {
         }
 
 
+    }
+
+    private float getSale(int width, int height) {
+        float scaleW = src_width/width;
+        float scaleH = src_height/height;
+
+        return scaleH>scaleW?scaleW:scaleH;
     }
 
     private void onUIReady() {

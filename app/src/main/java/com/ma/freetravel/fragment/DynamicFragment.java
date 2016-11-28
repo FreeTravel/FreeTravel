@@ -72,7 +72,7 @@ public class DynamicFragment extends Fragment {
             currentPage++;
         else
             currentPage = 1;
-        return new RequestParams(Url.getSpace(currentPage));
+        return new RequestParams(Url.getSpace(currentPage, getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels));
     }
 
     private void initView(View view) {
