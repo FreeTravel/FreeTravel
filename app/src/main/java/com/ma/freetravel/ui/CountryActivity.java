@@ -22,7 +22,6 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CountryActivity extends AppCompatActivity {
@@ -32,7 +31,7 @@ public class CountryActivity extends AppCompatActivity {
     private TextView tven;
     private RecyclerView recyclerView;
     private PlaceAdapter adapter;
-    private List<CountryBean> datas=new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +102,14 @@ public class CountryActivity extends AppCompatActivity {
     }
 
     private void initHead() {
-
         RecyclerViewHeader header=RecyclerViewHeader.fromXml(CountryActivity.this,R.layout.country_head_item);
-
         iv_show = ((ImageView) header.findViewById(R.id.country_iv));
         tvcn = ((TextView)header.findViewById(R.id.tvcn_country));
         tven = ((TextView)header.findViewById(R.id.tven_country));
-
         header.attachTo(recyclerView);
-
-
     }
 
     private void initView() {
-
-
         recyclerView = ((RecyclerView) findViewById(R.id.recyclev_country));
-
-
     }
 }

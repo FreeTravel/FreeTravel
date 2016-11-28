@@ -6,12 +6,24 @@
     android:orientation="vertical"
     tools:context="com.ma.freetravel.fragment.BournFragment">
 
-
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <EditText
         android:id="@+id/et_input"
         android:hint="想去哪里？输入国家/目的地"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="5"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_click"
+        android:text="查询"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
 
     <LinearLayout
         android:orientation="horizontal"

@@ -1,5 +1,8 @@
 package com.ma.freetravel.url;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * Created by 哈士奇爱吃苹果 on 2016/11/21.
  */
@@ -25,6 +28,18 @@ public class Url {
     //listview的网址
     public static String lvPath="http://apk.zdomo.com/api/ApiBasic?pageSize=20&pageNum=0&tmp=0.06086050612584448";
     //listvie点击跳转 第二页的内容需要xml解析listview的Content属性
+
+    public static String queryPath(String city){
+        try {
+            city= URLEncoder.encode(city,"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        //http://www.qiugonglue.com/api/v3/search/%E6%B5%8E%E5%8D%97?client_name=QGLMain&client_version=6.0.1&os_version=17&platform=android&screen_size=720x1280&tm=1479969021228&uuid=133524654038404&sign=af67b548d963949f798f481962d675f8
+        return   "http://www.qiugonglue.com/api/v3/search/"+city+"?client_name=QGLMain&client_version=6.0.1&os_version=17&platform=android&screen_size=720x1280&tm=1479969021228&uuid=133524654038404&sign=af67b548d963949f798f481962d675f8";
+
+    }
     //目的地
     //十一必玩
     public static String PlayPath="http://www.qiugonglue.com/api/v3/place/nav_place_list?client_name=QGLMain&client_version=6.0.1&os_version=17&platform=android&screen_size=720x1280&tm=1479727833223&type=hot&type_value=1&uuid=133524328529283&sign=a6fe988a3137dd395d0e16f6d2506df2";
