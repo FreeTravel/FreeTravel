@@ -4,36 +4,52 @@
         <item
             android:id="@+id/nav_home"
             android:checkable="true"
-            android:icon="@mipmap/ic_dashboard"
-            android:title="Home"/>
+            android:icon="@mipmap/home"
+            android:title="首页"/>
         <item
             android:id="@+id/nav_messages"
             android:checkable="true"
-            android:icon="@mipmap/ic_event"
-            android:title="Messages"/>
+            android:icon="@mipmap/place"
+            android:title="目的地"/>
         <item
             android:id="@+id/nav_friends"
             android:checkable="true"
-            android:icon="@mipmap/ic_headset"
-            android:title="Friends"/>
+            android:icon="@mipmap/dynamic"
+            android:title="动态"/>
         <item
             android:id="@+id/nav_discussion"
             android:checkable="true"
-            android:icon="@mipmap/ic_forum"
-            android:title="Discussion"/>
+            android:icon="@mipmap/movie"
+            android:title="路上看"/>
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="设置">
+        <menu>
+            <item
+                android:checkable="true"
+                android:icon="@mipmap/collection"
+                android:title="我的收藏"/>
+            <item
+                android:checkable="true"
+                android:icon="@mipmap/clean"
+                android:title="一键清除"/>
+            <item
+                android:checkable="true"
+                android:icon="@mipmap/ic_forum"
+                android:title="夜间模式"/>
+        </menu>
+    </item>
+
+    <item android:title="关于我们">
         <menu>
             <item
                 android:checkable="true"
                 android:icon="@mipmap/ic_dashboard"
-                android:title="Sub item 1"/>
+                android:title="版本信息"/>
             <item
                 android:checkable="true"
                 android:icon="@mipmap/ic_forum"
-                android:title="Sub item 2"/>
+                android:title="意见反馈"/>
         </menu>
     </item>
-
 </menu>
