@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:text="@string/app_name"
         android:gravity="center"
-        android:drawableTop="@mipmap/mfw_app_icon_new"/>
+        android:drawableTop="@drawable/ic_launcher"/>
 
 
 </FrameLayout>

@@ -73,6 +73,7 @@ public class CountryActivity extends AppCompatActivity {
                 tvcn.setText(country_info.getPlace_name());
                 tven.setText(country_info.getPlace_name_en());
 
+
             }
 
             @Override

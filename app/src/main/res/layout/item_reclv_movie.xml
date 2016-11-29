@@ -10,7 +10,7 @@
 <ImageView
     android:layout_width="@dimen/fragment_movie_image_item_lv"
     android:layout_height="match_parent"
-    android:src="@mipmap/ic_launcher"
+
     android:id="@+id/iv_item_reclv"/>
     <LinearLayout
         android:layout_width="0dp"

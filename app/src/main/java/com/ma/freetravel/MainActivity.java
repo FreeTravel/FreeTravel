@@ -1,12 +1,14 @@
 package com.ma.freetravel;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,13 +24,10 @@ import com.ma.freetravel.fragment.BournFragment;
 import com.ma.freetravel.fragment.DynamicFragment;
 import com.ma.freetravel.fragment.HomeFragment;
 import com.ma.freetravel.fragment.MoiveFragment2;
-import com.ma.freetravel.fragment.MovieFragment;
 import com.ma.freetravel.ui.CollectionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity  {
 
     //当前展示的Fragment的位置
     private int currentIndex = 0;
+    private ViewPager vp_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity  {
         initview();
         //获取Fragment的集合内容
         initFragment();
+      //  vp_main.setAdapter(new MyAdapter(getSupportFragmentManager()));
+       // vp_main.setCurrentItem(0);
+        initDrawer();
+    }
 
-
-        mDrawerLayout = ((DrawerLayout) findViewById(R.id.drawlayout));
-        mNavigationView = ((NavigationView) findViewById(R.id.id_nv_menu));
-        toolbar = ((Toolbar) findViewById(R.id.toolbar));
+    private void initDrawer() {
         toolbar.setTitle("自由行");
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 MainActivity.this
                 ,mDrawerLayout
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity  {
                 ,R.string.app_close
                 ,R.string.app_open
         );
-
         //ActionBarDrawerToggle与drawerLayout状态同步
         toggle.syncState();
         //drawerLayout绑定toggle
@@ -80,33 +79,38 @@ public class MainActivity extends AppCompatActivity  {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_home:
+                        //vp_main.setCurrentItem(0);
                         switchFragmet(0);
                         break;
                     case R.id.nav_messages:
+                       // vp_main.setCurrentItem(1);
                         switchFragmet(1);
                         break;
                     case R.id.nav_friends:
+                        //vp_main.setCurrentItem(2);
                         switchFragmet(2);
                         break;
                     case R.id.nav_discussion:
-                        switchFragmet(3);
+                        //vp_main.setCurrentItem(3);
+                       switchFragmet(3);
                         break;
                     case R.id.collection:
                         Intent intent=new Intent(MainActivity.this, CollectionActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.clean:
-                        dilog();
+                        // dilog();
                         break;
 
                 }
+                //关上抽屉
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
                 return false;
             }
         });
     }
 
-    private void dilog() {
+/*    private void dilog() {
         SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                 pDialog.setTitleText("确认删除吗")
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 })
                 .show();
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -156,6 +160,10 @@ public class MainActivity extends AppCompatActivity  {
 
     private void initview() {
         container = ((FrameLayout) findViewById(R.id.container_main));
+       //vp_main = ((ViewPager) findViewById(R.id.vp_main));
+        mDrawerLayout = ((DrawerLayout) findViewById(R.id.drawlayout));
+        mNavigationView = ((NavigationView) findViewById(R.id.id_nv_menu));
+        toolbar = ((Toolbar) findViewById(R.id.toolbar));
     }
 
 
@@ -187,7 +195,6 @@ public class MainActivity extends AppCompatActivity  {
             } else {
                 exit();
             }
-
             return true;
         }
 
@@ -202,5 +209,27 @@ public class MainActivity extends AppCompatActivity  {
         } else {
             finish();
         }
+    }
+
+    class MyAdapter extends FragmentStatePagerAdapter {
+
+
+        public MyAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return fragmentList.get(arg0);
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return fragmentList!= null?fragmentList.size():0;
+        }
+
+
     }
 }

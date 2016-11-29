@@ -1,15 +1,19 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.CityBeans;
+import com.ma.freetravel.ui.WebViewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,6 +55,7 @@ public class CityItem2Adapter extends BaseAdapter {
             viewHolder.tv_num= (TextView) convertView.findViewById(R.id.tv_num_item_city);
             viewHolder.tv_title= (TextView) convertView.findViewById(R.id.tv_title_item_foot);
             viewHolder.iv_pic= (ImageView) convertView.findViewById(R.id.iv_item_foot);
+            viewHolder.relative= (RelativeLayout) convertView.findViewById(R.id.relative);
             convertView.setTag(viewHolder);
         }else{
             viewHolder= (ViewHolder) convertView.getTag();
@@ -60,6 +65,14 @@ public class CityItem2Adapter extends BaseAdapter {
         viewHolder.tv_num.setText(cmsListBean.getLike_count());
         Picasso.with(context).load(cmsListBean.getCover_image()).into(viewHolder.iv_pic);
 
+        viewHolder.relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, WebViewActivity.class);
+                intent.putExtra("path",cmsListBean.getUrl());
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
@@ -67,5 +80,6 @@ public class CityItem2Adapter extends BaseAdapter {
     class ViewHolder{
         TextView tv_title,tv_num;
         ImageView iv_pic;
+        RelativeLayout relative;
     }
 }

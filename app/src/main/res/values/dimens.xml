@@ -8,7 +8,7 @@
     <dimen name="fragment_movie_lv_padding">16dp</dimen>
     <!--小圆点的高度-->
     <dimen name="fragment_movie_lv_vp_point_height">30dp</dimen>
-<!--电影首页中Item中图片的宽高-->
+    <!--电影首页中Item中图片的宽高-->
     <dimen name="fragment_movie_image_item_lv">80dp</dimen>
     <!--电影首页中Item中内边距-->
     <dimen name="fragment_movie_item_lv_padding">10dp</dimen>

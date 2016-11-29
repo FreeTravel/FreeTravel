@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="600dp"
     >
     <ImageView
         android:background="#dcdcdc"
@@ -21,18 +21,12 @@
         android:layout_height="2dp" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
         <com.ma.freetravel.widget.MyListView
             android:id="@+id/mylistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </com.ma.freetravel.widget.MyListView>
-        <com.ma.freetravel.widget.MyGridView
-            android:id="@+id/mygridView"
-            android:layout_marginLeft="5dp"
-            android:numColumns="3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.ma.freetravel.widget.MyGridView>
-    </RelativeLayout>
+        </RelativeLayout>
 
 </LinearLayout>

@@ -19,6 +19,12 @@
         </android.support.v7.widget.Toolbar>
 
 
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/vp_main"-->
+            <!--android:layout_below="@id/toolbar"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"></android.support.v4.view.ViewPager>-->
 
         <FrameLayout
             android:id="@+id/container_main"
@@ -33,6 +39,7 @@
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
+        android:descendantFocusability="afterDescendants"
         android:id="@+id/id_nv_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

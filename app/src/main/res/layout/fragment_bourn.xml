@@ -12,6 +12,7 @@
     android:layout_height="wrap_content">
     <EditText
         android:id="@+id/et_input"
+        android:textSize="16sp"
         android:hint="想去哪里？输入国家/目的地"
         android:layout_width="0dp"
         android:layout_weight="5"
@@ -19,6 +20,7 @@
     <Button
         android:id="@+id/btn_click"
         android:text="查询"
+        android:background="#fff"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content" />

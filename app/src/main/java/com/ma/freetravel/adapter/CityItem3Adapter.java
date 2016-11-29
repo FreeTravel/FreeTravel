@@ -48,6 +48,7 @@ public class CityItem3Adapter extends BaseAdapter {
             viewHolder=new ViewHolder();
             viewHolder.name_cn= (TextView) convertView.findViewById(R.id.tvcn_place_item);
             viewHolder.iv= (ImageView) convertView.findViewById(R.id.iv_place_item);
+            //viewHolder.relativeLayout= (RelativeLayout) convertView.findViewById(R.id.rlayout);
             convertView.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
@@ -55,6 +56,12 @@ public class CityItem3Adapter extends BaseAdapter {
         CityBeans.DataBean.RecommendPinListBean.EntertainmentBean entertainmentBean = data.get(position);
         viewHolder.name_cn.setText(entertainmentBean.getTitle());
         Picasso.with(context).load(entertainmentBean.getCover_image()).into(viewHolder.iv);
+//        viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         return convertView;
     }
 
@@ -62,6 +69,7 @@ public class CityItem3Adapter extends BaseAdapter {
 
         public ImageView iv;
         public TextView name_cn;
+       // public RelativeLayout relativeLayout;
 
     }
 }

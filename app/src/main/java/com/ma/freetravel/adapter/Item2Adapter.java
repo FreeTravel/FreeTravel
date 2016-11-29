@@ -2,6 +2,7 @@ package com.ma.freetravel.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,7 @@ public class Item2Adapter extends BaseAdapter {
         holder2.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("qqqq","点击");
                 Intent intent=new Intent(context, WebViewActivity.class);
                 intent.putExtra("path",productListBean.getAppUrl());
                 context.startActivity(intent);

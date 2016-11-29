@@ -175,7 +175,7 @@ public class MoiveFragment2 extends Fragment implements ICustom {
                     makeRadioButton();//小图标
                 }
                 makeCopyImage();//复制前后两张图片
-                viewPager.setCurrentItem(0);
+               viewPager.setCurrentItem(0);
                 setTimer();
                 mPagerAdapter.notifyDataSetChanged();
             } else if (object.equals(FlagData.FLAG_MOVIELV)) {

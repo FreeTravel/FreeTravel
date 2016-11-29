@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    >
+    <ImageView
+        android:background="#dcdcdc"
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <TextView
+   android:id="@+id/tv_mylistview"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="#dcdcdc"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.ma.freetravel.widget.MyGridView
+                android:id="@+id/mygridView"
+                android:layout_marginLeft="5dp"
+                android:numColumns="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.ma.freetravel.widget.MyGridView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.ma.freetravel.widget.MyListView
+                android:id="@+id/mylistview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.ma.freetravel.widget.MyListView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</LinearLayout>
