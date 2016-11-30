@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity  {
     private int currentIndex = 0;
     private ViewPager vp_main;
 
-    private TextView tv_link;
+    public static TextView tv_link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

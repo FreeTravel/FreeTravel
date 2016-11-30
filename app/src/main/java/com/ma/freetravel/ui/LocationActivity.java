@@ -18,6 +18,7 @@ import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.ma.freetravel.MainActivity;
 import com.ma.freetravel.R;
 
 public class LocationActivity extends AppCompatActivity implements LocationSource,
@@ -133,11 +134,14 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 mLocationErrText.setVisibility(View.GONE);
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+                //String address =
+                MainActivity.tv_link.setText(amapLocation.getAddress());
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
                 Log.e("AmapErr",errText);
                 mLocationErrText.setVisibility(View.VISIBLE);
                 mLocationErrText.setText(errText);
+                MainActivity.tv_link.setText("自由行");
             }
         }
     }
