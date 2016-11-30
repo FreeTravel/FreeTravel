@@ -1,15 +1,18 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.CityBeans;
+import com.ma.freetravel.ui.StoreActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,7 +51,7 @@ public class CityItem3Adapter extends BaseAdapter {
             viewHolder=new ViewHolder();
             viewHolder.name_cn= (TextView) convertView.findViewById(R.id.tvcn_place_item);
             viewHolder.iv= (ImageView) convertView.findViewById(R.id.iv_place_item);
-            //viewHolder.relativeLayout= (RelativeLayout) convertView.findViewById(R.id.rlayout);
+            viewHolder.frameLayout= (FrameLayout) convertView.findViewById(R.id.rlayout);
             convertView.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
@@ -56,12 +59,21 @@ public class CityItem3Adapter extends BaseAdapter {
         CityBeans.DataBean.RecommendPinListBean.EntertainmentBean entertainmentBean = data.get(position);
         viewHolder.name_cn.setText(entertainmentBean.getTitle());
         Picasso.with(context).load(entertainmentBean.getCover_image()).into(viewHolder.iv);
-//        viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
+        viewHolder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, StoreActivity.class);
+                context.startActivity(intent);
+            }
+        });
+      /*  viewHolder.frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, StoreActivity.class);
+                context.startActivity(intent);
+            }
+        });*/
         return convertView;
     }
 
@@ -69,7 +81,7 @@ public class CityItem3Adapter extends BaseAdapter {
 
         public ImageView iv;
         public TextView name_cn;
-       // public RelativeLayout relativeLayout;
+        public FrameLayout frameLayout;
 
     }
 }

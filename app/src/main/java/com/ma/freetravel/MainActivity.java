@@ -17,14 +17,18 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ma.freetravel.fragment.BournFragment;
 import com.ma.freetravel.fragment.DynamicFragment;
 import com.ma.freetravel.fragment.HomeFragment;
 import com.ma.freetravel.fragment.MoiveFragment2;
-import com.ma.freetravel.ui.CollectionActivity;
+import com.ma.freetravel.ui.LocationActivity;
+import com.ma.freetravel.ui.UserImageActivity;
+import com.ma.freetravel.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity  {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
-
+  public static CircleImageView useriv;
     private FrameLayout container;
     private HomeFragment homeFragment;
     private BournFragment bournFragment;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity  {
     private int currentIndex = 0;
     private ViewPager vp_main;
 
+    private TextView tv_link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +61,6 @@ public class MainActivity extends AppCompatActivity  {
         initview();
         //获取Fragment的集合内容
         initFragment();
-      //  vp_main.setAdapter(new MyAdapter(getSupportFragmentManager()));
-       // vp_main.setCurrentItem(0);
         initDrawer();
     }
 
@@ -74,6 +77,9 @@ public class MainActivity extends AppCompatActivity  {
         toggle.syncState();
         //drawerLayout绑定toggle
         mDrawerLayout.addDrawerListener(toggle);
+
+        setUserInformation();
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -95,12 +101,17 @@ public class MainActivity extends AppCompatActivity  {
                        switchFragmet(3);
                         break;
                     case R.id.collection:
-                        Intent intent=new Intent(MainActivity.this, CollectionActivity.class);
+                        Intent intent=new Intent(MainActivity.this, UserImageActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.clean:
                         // dilog();
                         break;
+                    //用户头像设置
+//                    case R.id.user_iv:
+//                        Intent intent1=new Intent(MainActivity.this,UserImageActivity.class);
+//                        startActivity(intent1);
+//                        break;
 
                 }
                 //关上抽屉
@@ -108,6 +119,27 @@ public class MainActivity extends AppCompatActivity  {
                 return false;
             }
         });
+    }
+
+    private void setUserInformation() {
+        useriv= (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.user_iv);
+        useriv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(MainActivity.this,UserImageActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        tv_link= (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.id_link);
+        tv_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LocationActivity.class));
+            }
+        });
+
+
     }
 
 /*    private void dilog() {

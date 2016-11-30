@@ -1,17 +1,14 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.CityBeans;
-import com.ma.freetravel.ui.StoreActivity;
 import com.ma.freetravel.widget.MyGridView;
 import com.ma.freetravel.widget.MyListView;
 
@@ -59,13 +56,13 @@ public class CityRvAdapter extends RecyclerView.Adapter<CityRvAdapter.MyViewHold
                 holder.textView.setText("好好玩");
                 CityItem3Adapter adapter1=new CityItem3Adapter(cityBeans.getData().getRecommend_pin_list().getEntertainment(),context);
                 holder.gridview.setAdapter(adapter1);
-                holder.gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent=new Intent(context, StoreActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
+//                holder.gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                        Intent intent=new Intent(context, StoreActivity.class);
+//                        context.startActivity(intent);
+//                    }
+//                });
         }
     }
 

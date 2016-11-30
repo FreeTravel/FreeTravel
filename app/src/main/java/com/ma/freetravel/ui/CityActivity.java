@@ -75,7 +75,6 @@ public class CityActivity extends AppCompatActivity {
                 for (int i = 0; i < 3; i++) {
                     listtype.add(i);
                 }
-                Log.e("saaa", cityBeans.getData().getPlace_id().toString());
                 adapter = new CityRvAdapter(cityBeans, CityActivity.this, listtype);
                 recyclerView.setAdapter(adapter);
                 initManger();
