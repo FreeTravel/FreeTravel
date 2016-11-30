@@ -135,7 +135,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
                 //String address =
-                MainActivity.tv_link.setText(amapLocation.getAddress());
+                MainActivity.tv_link.setText(amapLocation.getStreet());
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
                 Log.e("AmapErr",errText);
