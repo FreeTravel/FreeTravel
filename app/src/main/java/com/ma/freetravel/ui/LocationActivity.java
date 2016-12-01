@@ -74,7 +74,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         // 自定义定位蓝点图标
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
-                fromResource(R.mipmap.ic_booking_mdd));
+                fromResource(R.mipmap.mark_location));
         // 自定义精度范围的圆形边框颜色
         myLocationStyle.strokeColor(STROKE_COLOR);
         //自定义精度范围的圆形边框宽度
