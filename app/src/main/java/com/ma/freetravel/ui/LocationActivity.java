@@ -1,5 +1,6 @@
 package com.ma.freetravel.ui;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -73,7 +74,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         // 自定义定位蓝点图标
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
-                fromResource(R.drawable.ic_launcher));
+                fromResource(R.mipmap.ic_booking_mdd));
         // 自定义精度范围的圆形边框颜色
         myLocationStyle.strokeColor(STROKE_COLOR);
         //自定义精度范围的圆形边框宽度
@@ -134,8 +135,11 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 mLocationErrText.setVisibility(View.GONE);
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
-                //String address =
-                MainActivity.tv_link.setText(amapLocation.getStreet());
+                getSharedPreferences("config", Context.MODE_PRIVATE)
+                        .edit()
+                        .putString("local",amapLocation.getStreet())
+                        .apply();
+                MainActivity.tv_link.setText("  "+amapLocation.getStreet());
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
                 Log.e("AmapErr",errText);

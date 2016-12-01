@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="match_parent"
-
-    android:background="#FF0"
-    android:paddingRight="16dp"
-    android:layout_height="200dp">
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@mipmap/headbg"
+                android:paddingRight="16dp">
 
     <TextView
-        android:layout_marginLeft="20dp"
         android:id="@+id/id_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        android:text="所定位置"/>
+        android:layout_marginLeft="20dp"
+        android:drawableLeft="@mipmap/location"
+        android:gravity="bottom"
+        android:text="  你的位置"/>
 
     <TextView
-        android:layout_marginLeft="20dp"
         android:id="@+id/id_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/id_link"
-        android:text="用户昵称"/>
+        android:layout_marginLeft="20dp"
+        android:drawableLeft="@mipmap/user"
+        android:text="  你的昵称"/>
 
     <com.ma.freetravel.widget.CircleImageView
-        android:layout_marginLeft="20dp"
         android:id="@+id/user_iv"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_above="@id/id_username"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="20dp"
         android:src="@drawable/ic_launcher"/>
 
 </RelativeLayout>

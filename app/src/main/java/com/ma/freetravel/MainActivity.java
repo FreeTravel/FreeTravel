@@ -1,5 +1,6 @@
 package com.ma.freetravel;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -18,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,12 +33,13 @@ import com.ma.freetravel.fragment.HomeFragment;
 import com.ma.freetravel.fragment.MoiveFragment2;
 import com.ma.freetravel.ui.LocationActivity;
 import com.ma.freetravel.ui.UserImageActivity;
+import com.ma.freetravel.utils.DiaologUtil;
 import com.ma.freetravel.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private static String path = "/sdcard/DemoHead/";//sd路径
     private DrawerLayout mDrawerLayout;
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity  {
     private ViewPager vp_main;
     private SharedPreferences sharedPreferences;
 
-    public static TextView tv_link;
+    public static TextView tv_link, tv_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,48 +77,48 @@ public class MainActivity extends AppCompatActivity  {
         toolbar.setTitle("自由行");
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 MainActivity.this
-                ,mDrawerLayout
-                ,toolbar
-                ,R.string.app_close
-                ,R.string.app_open
+                , mDrawerLayout
+                , toolbar
+                , R.string.app_close
+                , R.string.app_open
         );
         //ActionBarDrawerToggle与drawerLayout状态同步
         toggle.syncState();
-        //drawerLayout绑定toggle
-        mDrawerLayout.addDrawerListener(toggle);
+        //
+        mDrawerLayout.setDrawerListener(toggle);
 
         setUserInformation();
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_home:
                         //vp_main.setCurrentItem(0);
-                        if(currentIndex!=0){
+                        if (currentIndex != 0) {
                             switchFragmet(0);
                         }
                         break;
                     case R.id.nav_messages:
-                       // vp_main.setCurrentItem(1);
-                        if(currentIndex!=1){
+                        // vp_main.setCurrentItem(1);
+                        if (currentIndex != 1) {
                             switchFragmet(1);
                         }
                         break;
                     case R.id.nav_friends:
                         //vp_main.setCurrentItem(2);
-                        if(currentIndex!=2){
+                        if (currentIndex != 2) {
                             switchFragmet(2);
                         }
                         break;
                     case R.id.nav_discussion:
                         //vp_main.setCurrentItem(3);
-                        if(currentIndex!=3){
+                        if (currentIndex != 3) {
                             switchFragmet(3);
                         }
                         break;
                     case R.id.collection:
-                        Intent intent=new Intent(MainActivity.this, UserImageActivity.class);
+                        Intent intent = new Intent(MainActivity.this, UserImageActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.clean:
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     private void setUserInformation() {
-        useriv= (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.user_iv);
+        useriv = (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.user_iv);
         Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");//从Sd中找头像，转换成Bitmap
         if (bt != null) {
             useriv.setImageBitmap(bt);
@@ -143,19 +147,50 @@ public class MainActivity extends AppCompatActivity  {
         useriv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(MainActivity.this,UserImageActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, UserImageActivity.class);
                 startActivity(intent1);
-                overridePendingTransition(R.anim.jump_in,0);
+                overridePendingTransition(R.anim.jump_in, 0);
             }
         });
 
 //        sharedPreferences=getSharedPreferences("useriv",MainActivity.MODE_PRIVATE);
 //        startActivityharedPreferences.edit().put
-        tv_link= (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.id_link);
+        tv_link = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.id_link);
+        String string = "  " + getSharedPreferences("config", Context.MODE_PRIVATE)
+                .getString("local", "当前位置");
+        tv_link.setText(string);
         tv_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, LocationActivity.class));
+            }
+        });
+        tv_name = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.id_username);
+        final String saveName = "  " + getSharedPreferences("config", Context.MODE_PRIVATE)
+                .getString("name", "你的昵称");
+        tv_name.setText(saveName);
+        String name = tv_name.getText().toString();
+        final View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_layout, null);
+        tv_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiaologUtil.init(MainActivity.this)
+                        .setCustonView(view, new DiaologUtil.CallBack() {
+                            @Override
+                            public void onCancel(String s) {
+
+                            }
+
+                            @Override
+                            public void onSure(String s) {
+                                tv_name.setText("  " + s);
+                                getSharedPreferences("config", Context.MODE_PRIVATE)
+                                        .edit()
+                                        .putString("name", s)
+                                        .apply();
+                            }
+                        })
+                        .showDialog();
             }
         });
 
@@ -179,23 +214,21 @@ public class MainActivity extends AppCompatActivity  {
     }*/
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navigation_view, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if(item.getItemId() == android.R.id.home)
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
-            return true ;
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void initFragment() {
         homeFragment = new HomeFragment();
         bournFragment = new BournFragment();
@@ -212,7 +245,7 @@ public class MainActivity extends AppCompatActivity  {
 
     private void initview() {
         container = ((FrameLayout) findViewById(R.id.container_main));
-       //vp_main = ((ViewPager) findViewById(R.id.vp_main));
+        //vp_main = ((ViewPager) findViewById(R.id.vp_main));
         mDrawerLayout = ((DrawerLayout) findViewById(R.id.drawlayout));
         mNavigationView = ((NavigationView) findViewById(R.id.id_nv_menu));
         toolbar = ((Toolbar) findViewById(R.id.toolbar));
@@ -279,7 +312,7 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public int getCount() {
             // TODO Auto-generated method stub
-            return fragmentList!= null?fragmentList.size():0;
+            return fragmentList != null ? fragmentList.size() : 0;
         }
 
 
