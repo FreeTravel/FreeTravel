@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ma.freetravel">
+          package="com.ma.freetravel">
 
     <!-- 用户头像设置需要的权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 地图包、搜索包需要的基础权限 -->
     <!-- 允许程序打开网络套接字 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 允许程序设置内置sd卡的写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 允许程序获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 允许程序访问WiFi网络信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- 允许程序读写手机状态和身份 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 允许程序打开网络套接字 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 允许程序设置内置sd卡的写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 允许程序获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 允许程序访问WiFi网络信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- 允许程序读写手机状态和身份 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".MyApp"
@@ -46,38 +46,40 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="3c6187ad66a638e82f0777445968ae48" />
+            android:value="3c6187ad66a638e82f0777445968ae48"/>
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ui.CountryActivity" />
-        <activity android:name=".ui.CityActivity" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ui.CountryActivity"/>
+        <activity android:name=".ui.CityActivity"/>
         <activity
             android:name=".ui.ShowPictureActivity"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@android:style/Theme.Translucent"/>
         <activity android:name=".ui.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.QueryActivity" />
-        <activity android:name=".ui.IntroduceActivity" />
-        <activity android:name=".ui.WebViewActivity" />
-        <activity android:name=".ui.MapActivity" />
+        <activity android:name=".ui.QueryActivity"/>
+        <activity android:name=".ui.IntroduceActivity"/>
+        <activity android:name=".ui.WebViewActivity"/>
+        <activity android:name=".ui.MapActivity"/>
 
-        <service android:name="com.amap.api.location.APSService" />
+        <service android:name="com.amap.api.location.APSService"/>
 
-        <activity android:name=".ui.CollectionActivity" />
-        <activity android:name=".ui.StoreActivity" />
-        <activity android:name=".ui.UserImageActivity" />
-        <activity android:name=".ui.LocationActivity" />
-        <activity android:name=".ui.AlbumActivity" />
-        <activity android:name=".ui.MovieAlbumDetailActivity" />
-        <activity android:name=".ui.MovieBaseActivity" />
-        <activity android:name=".ui.MovieRecommendActivity" />
-        <activity android:name=".ui.MoviePlayActivity" />
-        <activity android:name=".ui.MovieRelaxActivity" />
+        <activity android:name=".ui.CollectionActivity"/>
+        <activity android:name=".ui.StoreActivity"/>
+        <activity
+            android:name=".ui.UserImageActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:name=".ui.LocationActivity"/>
+        <activity android:name=".ui.AlbumActivity"/>
+        <activity android:name=".ui.MovieAlbumDetailActivity"/>
+        <activity android:name=".ui.MovieBaseActivity"/>
+        <activity android:name=".ui.MovieRecommendActivity"/>
+        <activity android:name=".ui.MoviePlayActivity"/>
+        <activity android:name=".ui.MovieRelaxActivity"/>
         <activity android:name=".ui.MovieMusicActivity"></activity>
 
     </application>

@@ -2,6 +2,8 @@ package com.ma.freetravel;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -36,6 +38,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity  {
 
+    private static String path = "/sdcard/DemoHead/";//sd路径
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
@@ -88,19 +91,27 @@ public class MainActivity extends AppCompatActivity  {
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         //vp_main.setCurrentItem(0);
-                        switchFragmet(0);
+                        if(currentIndex!=0){
+                            switchFragmet(0);
+                        }
                         break;
                     case R.id.nav_messages:
                        // vp_main.setCurrentItem(1);
-                        switchFragmet(1);
+                        if(currentIndex!=1){
+                            switchFragmet(1);
+                        }
                         break;
                     case R.id.nav_friends:
                         //vp_main.setCurrentItem(2);
-                        switchFragmet(2);
+                        if(currentIndex!=2){
+                            switchFragmet(2);
+                        }
                         break;
                     case R.id.nav_discussion:
                         //vp_main.setCurrentItem(3);
-                       switchFragmet(3);
+                        if(currentIndex!=3){
+                            switchFragmet(3);
+                        }
                         break;
                     case R.id.collection:
                         Intent intent=new Intent(MainActivity.this, UserImageActivity.class);
@@ -125,11 +136,16 @@ public class MainActivity extends AppCompatActivity  {
 
     private void setUserInformation() {
         useriv= (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.user_iv);
+        Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");//从Sd中找头像，转换成Bitmap
+        if (bt != null) {
+            useriv.setImageBitmap(bt);
+        }
         useriv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1=new Intent(MainActivity.this,UserImageActivity.class);
                 startActivity(intent1);
+                overridePendingTransition(R.anim.jump_in,0);
             }
         });
 

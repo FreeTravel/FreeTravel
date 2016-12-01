@@ -4,28 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#db686565"
+    android:background="#a4686565"
     android:gravity="center"
     tools:context="com.ma.freetravel.ui.UserImageActivity">
 
 
-    <com.ma.freetravel.widget.CircleImageView
-        android:id="@+id/iv_head"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_launcher" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:clickable="true"
+        android:onClick="exitClick"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#c9c8c8"
+        android:padding="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_takephoto"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="拍照" />
 
-    <Button
-        android:layout_marginTop="50dp"
-        android:id="@+id/btn_takephoto"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="拍照" />
+        <Button
+            android:id="@+id/btn_photos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="从相册中选取" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_photos"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="从相册中选取" />
 </LinearLayout>

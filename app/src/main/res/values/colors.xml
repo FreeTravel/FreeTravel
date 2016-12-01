@@ -8,5 +8,7 @@
 
     <color name="album_gray_light">#c2c1c2</color>
 
+    <color name="transparent">#8a000000</color>
+
 
 </resources>

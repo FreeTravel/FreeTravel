@@ -1,5 +1,6 @@
 package com.ma.freetravel.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,45 +8,44 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.ma.freetravel.MainActivity;
 import com.ma.freetravel.R;
-import com.ma.freetravel.widget.CircleImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class UserImageActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserImageActivity extends Activity implements View.OnClickListener {
 
-    private CircleImageView ivHead;//头像显示
     private Button btnTakephoto;//拍照
     private Button btnPhotos;//相册
     private Bitmap head;//头像Bitmap
     private static String path = "/sdcard/DemoHead/";//sd路径
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_image);
         initView();
     }
+
     private void initView() {
         //初始化控件
         btnPhotos = (Button) findViewById(R.id.btn_photos);
         btnTakephoto = (Button) findViewById(R.id.btn_takephoto);
         btnPhotos.setOnClickListener(this);
         btnTakephoto.setOnClickListener(this);
-        ivHead = (CircleImageView) findViewById(R.id.iv_head);
+
 
         Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");//从Sd中找头像，转换成Bitmap
         if (bt != null) {
             //如果本地有头像图片的话
-            ivHead.setImageBitmap(bt);
             MainActivity.useriv.setImageBitmap(bt);
         } else {
             //如果本地没有头像图片则从服务器取头像，然后保存在SD卡中，本Demo的网络请求头像部分忽略
@@ -107,7 +107,6 @@ public class UserImageActivity extends AppCompatActivity implements View.OnClick
                          * 上传服务器代码
                          */
                         setPicToView(head);//保存在SD卡中
-                        ivHead.setImageBitmap(head);//用ImageView显示出来
                         MainActivity.useriv.setImageBitmap(head);
                     }
                 }
@@ -169,4 +168,21 @@ public class UserImageActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    public void exitClick(View view) {
+        exit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        finish();
+        overridePendingTransition(0,R.anim.jump_out);
+    }
 }
