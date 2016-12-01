@@ -44,8 +44,12 @@ public class HomeFragment extends Fragment {
         mView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
+                String s = url.toString();
+                if (!s.startsWith("board:")) {
+                    view.loadUrl(url);
+                    return super.shouldOverrideUrlLoading(view, url);
+                }
+                return true;
             }
         });
         mView.loadUrl(path);
