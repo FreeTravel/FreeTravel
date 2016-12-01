@@ -2,14 +2,15 @@ package com.ma.freetravel.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import com.ma.freetravel.bean.MovieAlbum;
 import com.ma.freetravel.bean.MovieBanner;
 import com.ma.freetravel.bean.MovieLv;
-import com.ma.freetravel.url.Url;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,12 @@ public class PareUtils {
             List<MovieLv>  movieLvs=gson.fromJson(jsonString, new TypeToken<List<MovieLv>>() {
             }.getType());
             return movieLvs;
+        }else if (object.equals(FlagData.FLAG_MOVIEALBUM)){
+            List<MovieAlbum> movieAlba=gson.fromJson(jsonString,new TypeToken<List<MovieAlbum>>(){}.getType());
+            return movieAlba;
+        }else if (object.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
+            List<MovieLv> alumDetails=gson.fromJson(jsonString,new TypeToken<List<MovieLv>>(){}.getType());
+            return alumDetails;
         }
        return null;
     }

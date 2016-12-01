@@ -1,6 +1,7 @@
 package com.ma.freetravel.fragment;
 
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,10 +9,10 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -26,6 +27,10 @@ import com.ma.freetravel.adapter.MovieLVAdapter;
 import com.ma.freetravel.bean.MovieBanner;
 import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.jiekou.ICustom;
+import com.ma.freetravel.ui.AlbumActivity;
+import com.ma.freetravel.ui.MovieMusicActivity;
+import com.ma.freetravel.ui.MovieRecommendActivity;
+import com.ma.freetravel.ui.MovieRelaxActivity;
 import com.ma.freetravel.url.Url;
 import com.ma.freetravel.utils.FlagData;
 import com.ma.freetravel.utils.OkHttpUtils;
@@ -38,7 +43,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MoiveFragment2 extends Fragment implements ICustom {
+public class MoiveFragment2 extends Fragment implements ICustom, AdapterView.OnItemClickListener {
 
     private int pageNum = 0;
     private List<MovieBanner> movieBanners = new ArrayList<>();
@@ -138,7 +143,7 @@ public class MoiveFragment2 extends Fragment implements ICustom {
         ListView listView = pulv.getRefreshableView();
         listView.setEmptyView(empty);//添加空视图
         listView.addHeaderView(hearView);//添加头视图
-        movieListAdapter = new MovieLVAdapter(movieLvs, getContext());
+        movieListAdapter = new MovieLVAdapter(movieLvs, getContext(),FlagData.FLAG_MOVIELV);
         pulv.setAdapter(movieListAdapter);
         //下拉刷新 上拉加载
         pulv.setMode(PullToRefreshBase.Mode.BOTH);
@@ -155,6 +160,7 @@ public class MoiveFragment2 extends Fragment implements ICustom {
                 loadData();
             }
         });
+        pulv.setOnItemClickListener(this);
     }
 
     @Override
@@ -171,7 +177,11 @@ public class MoiveFragment2 extends Fragment implements ICustom {
                 movieBanners.addAll(list);
                 for (int i = 0; i < movieBanners.size(); i++) {
                     MovieBanner movieBanner = movieBanners.get(i);
-                    makeImage(Url.Head_VpPath + movieBanner.getThePhoto());//获取轮播图片
+                    if (i==2||i==4){
+                        makeImage(Url.Head3+movieBanner.getThePhoto());
+                    }else {
+                        makeImage(Url.Head_VpPath + movieBanner.getThePhoto());//获取轮播图片
+                    }
                     makeRadioButton();//小图标
                 }
                 makeCopyImage();//复制前后两张图片
@@ -182,6 +192,14 @@ public class MoiveFragment2 extends Fragment implements ICustom {
                 movieLvs = PareUtils.getData1(result, FlagData.FLAG_MOVIELV);
             }
             movieListAdapter.addData(movieLvs);
+            if (pulv.isRefreshing()){
+                pulv.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pulv.onRefreshComplete();
+                    }
+                },2000);
+            }
         }
 
     }
@@ -215,13 +233,14 @@ public class MoiveFragment2 extends Fragment implements ICustom {
     private void makeImage(String path) {
         ImageView imageView = new ImageView(getContext());
         imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-       imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Picasso.with(getContext()).load(path).into(imageView);
         imageViews.add(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    Intent intent=new Intent(getContext(),)
+                Intent intent = new Intent(getContext(), AlbumActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -239,5 +258,25 @@ public class MoiveFragment2 extends Fragment implements ICustom {
     public void onDestroy() {
         super.onDestroy();
         mTimer.cancel();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        MovieLv movieLv = movieLvs.get(position);
+        int columnID = movieLv.getColumnID();
+        Intent intent=new Intent();
+        intent.putExtra("movieLv",movieLv);
+        switch (columnID){
+            case 1:
+                intent.setClass(getContext(),MovieRecommendActivity.class);
+                break;
+            case 4:
+                intent.setClass(getContext(), MovieMusicActivity.class);
+                break;
+            case 5:
+                intent.setClass(getContext(), MovieRelaxActivity.class);
+                break;
+        }
+        startActivity(intent);
     }
 }

@@ -1,13 +1,14 @@
 package com.ma.freetravel.bean;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2016/11/22.
+ * Created by Administrator on 2016/11/29.
  */
 
-public class MovieLv implements Serializable {
-
+public class AlumDetail implements Serializable{
     /**
      * ColumnID : 1
      * InfoID : 4977
@@ -21,7 +22,19 @@ public class MovieLv implements Serializable {
      * GoodTimes : 0
      * LabelIDS :
      */
-
+    /**
+     * ColumnID : 1
+     * InfoID : 4942
+     * PicURL : /ueditor/net/upload/image/20160927/c17_FFFD99481158215.jpg
+     * Title : 马男波杰克
+     * LinkUrl : http://www.iqiyi.com/v_19rrl2306o.html?zjmoviezdomo=1
+     * Introduction : 《马男波杰克》：时下最流行的“毒鸡汤”
+     * SpecilLabelIDS : 15,
+     * Content : <p style="text-align: center;"><img src="/ueditor/net/upload/image/20160927/c17_32CAB6794554.jpg" title="马男1.jpg" alt="马男1.jpg"/></p><p style="text-align: center;"><img src="/ueditor/net/upload/image/20160927/c17_FFFCC46D5458375.jpg" title="马男2.jpg" alt="马男2.jpg"/></p><p style="text-align: center;"><img src="/ueditor/net/upload/image/20160927/c17_FFFCD7801134920.jpg" title="马男3.jpg" alt="马男3.jpg"/></p><p>本剧的世界设定是普通人类和拟人化的动物共同生活在一起，除了外形，这些动物跟人类没什么不同。马男波杰克（威尔·阿奈特 Will Arnett 配音）就是一匹中年过气明星马，他年轻时主演的电视剧《胡闹的小马》风靡一时，而今他已是无人问津的过气明星，与人类废柴陶德（亚伦·保尔 Aaron Paul 配音）一同生活在LA的一所别墅里。为了重整旗鼓，波杰克在经纪人兼前女友卡罗琳公主（艾米·塞德丽丝 Amy Sedaris 配音）催促下决定出版一部自传，希望回到大众视野里。但是由于波杰克过分拖延迟迟不肯下笔，出版社介绍了一位枪手作者戴安（爱丽森·布里 Alison Brie 配音）给他。波杰克多番拒绝，终于，在一个派对上，他与戴安相遇了，却发现她竟是自己的死对头花生酱先生的女朋友。</p>
+     * AddTime : 2016-09-30T17:41:41
+     * LabelIDS : 动画
+     * GoodTimes : 4
+     */
     private int ColumnID;
     private int InfoID;
     private String PicURL;
@@ -31,8 +44,8 @@ public class MovieLv implements Serializable {
     private String SpecilLabelIDS;
     private String Content;
     private String AddTime;
-    private int GoodTimes;
     private String LabelIDS;
+    private int GoodTimes;
 
     public int getColumnID() {
         return ColumnID;
@@ -106,19 +119,19 @@ public class MovieLv implements Serializable {
         this.AddTime = AddTime;
     }
 
-    public int getGoodTimes() {
-        return GoodTimes;
-    }
-
-    public void setGoodTimes(int GoodTimes) {
-        this.GoodTimes = GoodTimes;
-    }
-
     public String getLabelIDS() {
         return LabelIDS;
     }
 
     public void setLabelIDS(String LabelIDS) {
         this.LabelIDS = LabelIDS;
+    }
+
+    public int getGoodTimes() {
+        return GoodTimes;
+    }
+
+    public void setGoodTimes(int GoodTimes) {
+        this.GoodTimes = GoodTimes;
     }
 }

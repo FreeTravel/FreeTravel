@@ -31,7 +31,7 @@ public class OkHttpUtils {
     }
 
     public void loadData(final String path) {
-        OkHttpClient okHttpClient = new OkHttpClient();
+        final OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(path)
                 .build();
@@ -53,6 +53,10 @@ public class OkHttpUtils {
                                 iCustom.handleActionSuccess(str, object);
                             } else if (object.equals(FlagData.FLAG_MOVIELV)) {
                                 iCustom.handleActionSuccess(str, object);
+                            }else if (object.equals(FlagData.FLAG_MOVIEALBUM)){
+                                iCustom.handleActionSuccess(str,object);
+                            }else if (object.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
+                                iCustom.handleActionSuccess(str,object);
                             }
                         } else {
                             Log.e(TAG, "未请求到数据 ");

@@ -6,7 +6,6 @@
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/activity_horizontal_margin">
-
 <ImageView
     android:layout_width="@dimen/fragment_movie_image_item_lv"
     android:layout_height="match_parent"
@@ -24,14 +23,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/title_tv_item_reclv"
             android:singleLine="true"
-            android:text="XX"/>
+           />
 
         <TextView
             android:id="@+id/introduction_tv_item_reclv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="XX"/>
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

@@ -7,4 +7,6 @@ package com.ma.freetravel.utils;
 public class FlagData {
     public static final String FLAG_MOVIEBANNER="0";
     public static final String FLAG_MOVIELV="1";
+    public static final String FLAG_MOVIEALBUM="2";
+    public static final String FLAG_MOVIEALBUMDETAIL="3";
 }

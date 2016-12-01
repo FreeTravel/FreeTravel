@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="dynamic_bg_color">#e1ddde</color>
+
+    <color name="album_gray_light">#c2c1c2</color>
+
+
 </resources>

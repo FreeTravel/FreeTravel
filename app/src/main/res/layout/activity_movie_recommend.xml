@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_movie_recommend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ma.freetravel.ui.MovieRecommendActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_toolbar_height">
+        <!--app:layout_scrollFlags="enterAlways"
+        让ToolBar和滑动组件一起滑动
+        Scroll 如果想画出屏幕 需要设置Scroll
+        enterAlways ：向上滑动 出去  向下滑动出来
+    enterAlwaysCollapsed :向上滑动
+
+    android:minHeight="10dp"向上滑动保留最小高度 向下滑动，所有数据出来之后再出来
+            app:layout_scrollFlags="scroll||exitUntilCollapsed"
+      -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBar_movieRecommend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_toolbar_height"
+            android:background="#000"
+            android:minHeight="10dp"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:src="@mipmap/icon_back"
+                android:id="@+id/back"/>
+
+            <TextView
+                android:id="@+id/title_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="标题"
+                android:textColor="#fff"
+                android:textSize="@dimen/activity_movieBase__title_textSize" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" 在AppBarLayout下面-->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#000"
+                android:layout_height="@dimen/movie_recommend_header_height"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/pic_movieRecommend"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/album" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/movie_recommend_margin"
+                    android:layout_marginTop="@dimen/movie_recommend_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_movieRecommend"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/labelIDS_movieRecommend"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/movie_recommend_margin"
+                        android:layout_marginTop="@dimen/movie_recommend_margin"
+                        android:layout_weight="1"
+                        android:textColor="#fff" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/play_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/movie_recommend_iv_height"
+                            android:src="@mipmap/play_in" />
+
+                        <ImageView
+                            android:id="@+id/collect_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/movie_recommend_iv_height"
+                            android:layout_marginLeft="@dimen/movie_recommend_margin"
+                            android:src="@mipmap/collection_white_0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/movie_recommend_margin"
+                android:textSize="@dimen/movie_recommend_title_textSize"
+                android:textStyle="bold" />
+
+            <WebView
+                android:id="@+id/webView_movieRecommend"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/fragment_movie_item_lv_shipin">
+
+                <ImageView
+                    android:id="@+id/dianzan_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@mipmap/bottom_good" />
+
+                <ImageView
+                    android:id="@+id/share_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/bottom_share" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

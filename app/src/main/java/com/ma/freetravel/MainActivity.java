@@ -1,6 +1,7 @@
 package com.ma.freetravel;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity  {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
-  public static CircleImageView useriv;
+    public static CircleImageView useriv;
     private FrameLayout container;
     private HomeFragment homeFragment;
     private BournFragment bournFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity  {
     //当前展示的Fragment的位置
     private int currentIndex = 0;
     private ViewPager vp_main;
+    private SharedPreferences sharedPreferences;
 
     public static TextView tv_link;
     @Override
@@ -131,6 +133,8 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
+//        sharedPreferences=getSharedPreferences("useriv",MainActivity.MODE_PRIVATE);
+//        startActivityharedPreferences.edit().put
         tv_link= (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.id_link);
         tv_link.setOnClickListener(new View.OnClickListener() {
             @Override

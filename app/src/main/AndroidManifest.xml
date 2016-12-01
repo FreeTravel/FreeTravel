@@ -71,7 +71,15 @@
         <activity android:name=".ui.CollectionActivity" />
         <activity android:name=".ui.StoreActivity" />
         <activity android:name=".ui.UserImageActivity" />
-        <activity android:name=".ui.LocationActivity"></activity>
+        <activity android:name=".ui.LocationActivity" />
+        <activity android:name=".ui.AlbumActivity" />
+        <activity android:name=".ui.MovieAlbumDetailActivity" />
+        <activity android:name=".ui.MovieBaseActivity" />
+        <activity android:name=".ui.MovieRecommendActivity" />
+        <activity android:name=".ui.MoviePlayActivity" />
+        <activity android:name=".ui.MovieRelaxActivity" />
+        <activity android:name=".ui.MovieMusicActivity"></activity>
+
     </application>
 
 </manifest>
