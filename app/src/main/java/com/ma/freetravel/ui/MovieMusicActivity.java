@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
+import com.ma.freetravel.adapter.MusicLvAdapter;
 import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.url.Url;
 import com.ma.freetravel.widget.MyListView;
@@ -32,13 +33,14 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
     private ImageView share_iv;
     private ImageView dianzan_iv;
     private MyListView lv;
+    private String[][] aStr;//存放音乐
+    private MusicLvAdapter musicLvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_music);
         initView();
-
     }
 
     private void initView() {
@@ -54,7 +56,6 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
         lv = ((MyListView) findViewById(R.id.lv_moviemusic));
         pic_iv = ((ImageView) findViewById(R.id.pic_movieMusic));
         title_tv = ((TextView) findViewById(R.id.title_movieMusic));
-        webView = ((WebView) findViewById(R.id.webView_movieMusic));
         collect_iv = ((ImageView) findViewById(R.id.collect_iv));
         share_iv = ((ImageView) findViewById(R.id.share_iv));
         dianzan_iv = ((ImageView) findViewById(R.id.dianzan_iv));
@@ -77,18 +78,13 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
                 .into(pic_iv);
         title_tv.setText(movieLv.getTitle());
         String content = movieLv.getContent();
-        String[] urls = content.replace("<>",",").replace("{}",",").split(",");
-        StringBuffer sb = new StringBuffer("<table style='width:100%'>");
-//        for(int i=0;i<urls.length;i++){
-//            if(i%2==0){
-//                sb.append("<tr><td>").append(urls[i]).append("</td>");
-//            }else{
-//                sb.append("<td>").append("<a href='").append(urls[i]).append("'><img src='http://img.zcool.cn/community/017e0657c3f07a0000012e7ec0700a.jpg' width='30px'></a>").append("</td></tr>");
-//            }
-//        }
-//        sb.append("</table>");
-//        webView.loadDataWithBaseURL(null, sb.toString(), "text/html", "utf-8",null);
-
+        String[] split = content.split("[{}]");
+        aStr=new String[split.length][];
+        for (int i = 0; i < split.length; i++) {
+            aStr[i]=split[i].split("<>");
+        }
+        musicLvAdapter = new MusicLvAdapter(this,aStr);
+        lv.setAdapter(musicLvAdapter);
     }
     public Bitmap toRoundBitmap(Bitmap bitmap) {
         //圆形图片宽高

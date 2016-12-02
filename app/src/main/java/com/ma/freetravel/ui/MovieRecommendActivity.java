@@ -73,7 +73,6 @@ public class MovieRecommendActivity extends AppCompatActivity implements View.On
         introduction_tv.setText(movieLv.getIntroduction());
         String content = movieLv.getContent();
         content = content.replace("src=\"","src=\""+Url.Head3).replace("<p>","<p style='font-size:18px'>");
-        Log.e("TTTT", "setData: "+content );
         webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",
                 null);    }
 

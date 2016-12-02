@@ -32,7 +32,7 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_music);
+        setContentView(R.layout.activity_movie_relax);
         initView();
 
     }
@@ -47,12 +47,14 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
                 overridePendingTransition(R.anim.in2_activity, R.anim.out_activity);
             }
         });
-        pic_iv = ((ImageView) findViewById(R.id.pic_movieMusic));
-        title_tv = ((TextView) findViewById(R.id.title_movieMusic));
-        webView = ((WebView) findViewById(R.id.webView_movieMusic));
-        collect_iv = ((ImageView) findViewById(R.id.collect_iv));
-        share_iv = ((ImageView) findViewById(R.id.share_iv));
-        dianzan_iv = ((ImageView) findViewById(R.id.dianzan_iv));
+        View view = findViewById(R.id.include_movierelax);
+        pic_iv = ((ImageView) view.findViewById(R.id.pic_movieMusic));
+        title_tv = ((TextView) view.findViewById(R.id.title_movieMusic));
+        collect_iv = ((ImageView) view.findViewById(R.id.collect_iv));
+
+        webView = ((WebView) findViewById(R.id.webView_movieRelax));
+        share_iv = ((ImageView)findViewById(R.id.share_iv));
+        dianzan_iv = ((ImageView)findViewById(R.id.dianzan_iv));
         collect_iv.setOnClickListener(this);
         Picasso.with(this).load(Url.Head3+movieLv.getPicURL())
                 .transform(new Transformation() {
@@ -72,6 +74,7 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
                 .into(pic_iv);
         title_tv.setText(movieLv.getTitle());
         String content = movieLv.getContent();
+        content=content.replace("/","");
         webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",null);
     }
     public Bitmap toRoundBitmap(Bitmap bitmap) {

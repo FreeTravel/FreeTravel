@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_movie_relax"
+    android:id="@+id/activity_music_play_acitvity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ma.freetravel.ui.MovieRelaxActivity">
+    tools:context="com.ma.freetravel.ui.MusicPlayAcitvity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_toolbar_height"
         android:background="#000"
-        android:id="@+id/toolbar_movieRelax">
+        android:id="@+id/toolbar_musicPlay">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,11 +20,11 @@
             android:textColor="#fff"
             android:id="@+id/title_activity"/>
     </android.support.v7.widget.Toolbar>
-    <include
-        android:id="@+id/include_movierelax"
-        layout="@layout/head_include_layout" />
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webView_movieRelax"/>
+        android:layout_below="@+id/toolbar_musicPlay"
+        android:id="@+id/webView_musicPLay">
+
+    </WebView>
 </RelativeLayout>
