@@ -32,7 +32,7 @@ private Context context;
 
     @Override
     public Object getItem(int position) {
-        return data[position];
+        return data[position][0];
     }
 
     @Override
@@ -54,7 +54,6 @@ private Context context;
         }
         final String[] strings = data[position];
         holder.textView.setText(strings[0]);
-        holder.imageView.setImageResource(R.mipmap.music_listen);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

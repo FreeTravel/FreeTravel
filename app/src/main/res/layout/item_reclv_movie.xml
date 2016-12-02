@@ -38,8 +38,8 @@
         android:gravity="center"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="@dimen/fragment_movie_item_lv_shipin"
-            android:layout_height="@dimen/fragment_movie_item_lv_shipin"
+            android:layout_width="@dimen/album_item_imgage_width"
+            android:layout_height="@dimen/album_item_imgage_width"
             android:src="@mipmap/play"
             android:visibility="invisible"
             android:id="@+id/shipin_iv_item_reclv"/>

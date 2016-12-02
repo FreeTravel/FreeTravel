@@ -7,7 +7,10 @@
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pulv_movie"/>
+        android:id="@+id/pulv_movie"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
     <TextView
         android:id="@+id/emptyView"
         android:layout_width="wrap_content"

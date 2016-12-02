@@ -3,22 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <TextView
+        android:id="@+id/musicName_item_moviemusic"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="left"
-        android:textSize="16sp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:id="@+id/musicName_item_moviemusic"/>
+        android:layout_weight="1"
+        android:gravity="left"
+        android:textSize="16sp" />
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/icon_music"
+        android:layout_width="@dimen/album_item_imgage_width"
+        android:layout_height="@dimen/album_item_imgage_width"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="right"
-        android:layout_gravity="center"
-        android:src="@mipmap/music_listen"
-        android:id="@+id/icon_music"/>
+        android:src="@mipmap/music_listen" />
 </LinearLayout>

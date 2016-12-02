@@ -39,7 +39,8 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
 
     private void initView() {
         MovieLv movieLv = (MovieLv) getIntent().getSerializableExtra("movieLv");
-        toolbar = ((Toolbar) findViewById(R.id.toolBar_movieMusic));
+        toolbar = ((Toolbar) findViewById(R.id.toolbar_movieRelax));
+        toolbar.setNavigationIcon(R.mipmap.icon_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +75,7 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
                 .into(pic_iv);
         title_tv.setText(movieLv.getTitle());
         String content = movieLv.getContent();
-        content=content.replace("/","");
+        content=content.replace("\\","");
         webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",null);
     }
     public Bitmap toRoundBitmap(Bitmap bitmap) {
