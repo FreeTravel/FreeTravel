@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.ma.freetravel.R;
 import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.url.Url;
+import com.ma.freetravel.widget.MyListView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -29,6 +31,7 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
     private ImageView collect_iv;
     private ImageView share_iv;
     private ImageView dianzan_iv;
+    private MyListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView() {
-        MovieLv alumDetail = (MovieLv) getIntent().getSerializableExtra("alumDetail");
+        MovieLv movieLv = (MovieLv) getIntent().getSerializableExtra("movieLv");
         toolbar = ((Toolbar) findViewById(R.id.toolBar_movieMusic));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +51,7 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
                 overridePendingTransition(R.anim.in2_activity, R.anim.out_activity);
             }
         });
+        lv = ((MyListView) findViewById(R.id.lv_moviemusic));
         pic_iv = ((ImageView) findViewById(R.id.pic_movieMusic));
         title_tv = ((TextView) findViewById(R.id.title_movieMusic));
         webView = ((WebView) findViewById(R.id.webView_movieMusic));
@@ -55,7 +59,7 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
         share_iv = ((ImageView) findViewById(R.id.share_iv));
         dianzan_iv = ((ImageView) findViewById(R.id.dianzan_iv));
         collect_iv.setOnClickListener(this);
-        Picasso.with(this).load(Url.Head3+alumDetail.getPicURL())
+        Picasso.with(this).load(Url.Head3+movieLv.getPicURL())
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(Bitmap source) {
@@ -71,10 +75,20 @@ public class MovieMusicActivity extends AppCompatActivity implements View.OnClic
                     }
                 })
                 .into(pic_iv);
-        title_tv.setText(alumDetail.getTitle());
-        String content = alumDetail.getContent();
-        content = content.replace("\\", "");
-        webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",null);
+        title_tv.setText(movieLv.getTitle());
+        String content = movieLv.getContent();
+        String[] urls = content.replace("<>",",").replace("{}",",").split(",");
+        StringBuffer sb = new StringBuffer("<table style='width:100%'>");
+//        for(int i=0;i<urls.length;i++){
+//            if(i%2==0){
+//                sb.append("<tr><td>").append(urls[i]).append("</td>");
+//            }else{
+//                sb.append("<td>").append("<a href='").append(urls[i]).append("'><img src='http://img.zcool.cn/community/017e0657c3f07a0000012e7ec0700a.jpg' width='30px'></a>").append("</td></tr>");
+//            }
+//        }
+//        sb.append("</table>");
+//        webView.loadDataWithBaseURL(null, sb.toString(), "text/html", "utf-8",null);
+
     }
     public Bitmap toRoundBitmap(Bitmap bitmap) {
         //圆形图片宽高

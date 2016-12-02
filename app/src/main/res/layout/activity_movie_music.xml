@@ -114,10 +114,14 @@
                 android:background="@color/album_gray_light"/>
 
 
-            <WebView
-                android:id="@+id/webView_movieMusic"
+            <!--<WebView-->
+                <!--android:id="@+id/webView_movieMusic"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+            <com.ma.freetravel.widget.MyListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:id="@+id/lv_moviemusic"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

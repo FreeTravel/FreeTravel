@@ -10,18 +10,17 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ma.freetravel.R;
-import com.ma.freetravel.bean.AlumDetail;
+import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.url.Url;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
-
-import java.io.Serializable;
 
 public class MovieRecommendActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,11 +36,11 @@ public class MovieRecommendActivity extends AppCompatActivity implements View.On
     private TextView content_tv;
     private ImageView dianzan_iv;
     private ImageView share_iv;
-    private AlumDetail alumDetail;
     private TextView type_tv;
     private WebView webView;
     private TextView introduction_tv;
     private ImageView back_iv;
+    private MovieLv movieLv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class MovieRecommendActivity extends AppCompatActivity implements View.On
     }
 
     private void setData() {
-        Picasso.with(this).load(Url.Head3+alumDetail.getPicURL())
+        Picasso.with(this).load(Url.Head3+movieLv.getPicURL())
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(Bitmap source) {
@@ -69,17 +68,18 @@ public class MovieRecommendActivity extends AppCompatActivity implements View.On
                     }
                 })
                 .into(pic_iv);
-        title_content.setText(alumDetail.getTitle());
-        type_tv.setText("类型："+alumDetail.getLabelIDS());
-        introduction_tv.setText(alumDetail.getIntroduction());
-        String content = alumDetail.getContent();
-        content = content.replace("<img src=\"/","<img src=\""+Url.Head3).replace("<p>","<p style='font-size:18px'>");
+        title_content.setText(movieLv.getTitle());
+        type_tv.setText("类型："+movieLv.getLabelIDS());
+        introduction_tv.setText(movieLv.getIntroduction());
+        String content = movieLv.getContent();
+        content = content.replace("src=\"","src=\""+Url.Head3).replace("<p>","<p style='font-size:18px'>");
+        Log.e("TTTT", "setData: "+content );
         webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",
                 null);    }
 
     private void init() {
-        Serializable serializable = getIntent().getSerializableExtra("movieLv");
-        alumDetail = (AlumDetail) getIntent().getSerializableExtra("alumDetail");
+
+        movieLv = (MovieLv) getIntent().getSerializableExtra("movieLv");
         toolbar = ((Toolbar) findViewById(R.id.toolBar_movieRecommend));
         title_toolbar = ((TextView) findViewById(R.id.title_toolbar));
         back_iv = ((ImageView) findViewById(R.id.back));
@@ -147,8 +147,8 @@ public class MovieRecommendActivity extends AppCompatActivity implements View.On
         switch (v.getId()){
             case R.id.play_iv:
                 Intent intent=new Intent(this,MoviePlayActivity.class);
-                String linkUrl = alumDetail.getLinkUrl();
-                String title = alumDetail.getTitle();
+                String linkUrl = movieLv.getLinkUrl();
+                String title = movieLv.getTitle();
                 intent.putExtra("title",title);
                 intent.putExtra("linkUrl",linkUrl);
                 startActivity(intent);

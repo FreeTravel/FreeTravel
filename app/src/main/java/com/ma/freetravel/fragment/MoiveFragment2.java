@@ -143,7 +143,7 @@ public class MoiveFragment2 extends Fragment implements ICustom, AdapterView.OnI
         ListView listView = pulv.getRefreshableView();
         listView.setEmptyView(empty);//添加空视图
         listView.addHeaderView(hearView);//添加头视图
-        movieListAdapter = new MovieLVAdapter(movieLvs, getContext(),FlagData.FLAG_MOVIELV);
+        movieListAdapter = new MovieLVAdapter(movieLvs, getContext(), FlagData.FLAG_MOVIELV);
         pulv.setAdapter(movieListAdapter);
         //下拉刷新 上拉加载
         pulv.setMode(PullToRefreshBase.Mode.BOTH);
@@ -177,28 +177,30 @@ public class MoiveFragment2 extends Fragment implements ICustom, AdapterView.OnI
                 movieBanners.addAll(list);
                 for (int i = 0; i < movieBanners.size(); i++) {
                     MovieBanner movieBanner = movieBanners.get(i);
-                    if (i==2||i==4){
-                        makeImage(Url.Head3+movieBanner.getThePhoto());
-                    }else {
-                        makeImage(Url.Head_VpPath + movieBanner.getThePhoto());//获取轮播图片
+                    String thePhoto = movieBanner.getThePhoto();
+                    boolean b = thePhoto.startsWith("/ueditor");
+                    if (b) {
+                        makeImage(Url.Head3 + movieBanner.getThePhoto());
                     }
+                    makeImage(Url.Head_VpPath + movieBanner.getThePhoto());//获取轮播图片
                     makeRadioButton();//小图标
                 }
                 makeCopyImage();//复制前后两张图片
-               viewPager.setCurrentItem(0);
+                viewPager.setCurrentItem(0);
                 setTimer();
                 mPagerAdapter.notifyDataSetChanged();
             } else if (object.equals(FlagData.FLAG_MOVIELV)) {
-                movieLvs = PareUtils.getData1(result, FlagData.FLAG_MOVIELV);
+                List data1 = PareUtils.getData1(result, FlagData.FLAG_MOVIELV);
+                movieLvs.addAll(0, data1);
+                movieListAdapter.notifyDataSetChanged();
             }
-            movieListAdapter.addData(movieLvs);
-            if (pulv.isRefreshing()){
+            if (pulv.isRefreshing()) {
                 pulv.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         pulv.onRefreshComplete();
                     }
-                },2000);
+                }, 2000);
             }
         }
 
@@ -262,13 +264,13 @@ public class MoiveFragment2 extends Fragment implements ICustom, AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        MovieLv movieLv = movieLvs.get(position);
+        MovieLv movieLv = movieLvs.get(position-2);
         int columnID = movieLv.getColumnID();
-        Intent intent=new Intent();
-        intent.putExtra("movieLv",movieLv);
-        switch (columnID){
+        Intent intent = new Intent();
+        intent.putExtra("movieLv", movieLv);
+        switch (columnID) {
             case 1:
-                intent.setClass(getContext(),MovieRecommendActivity.class);
+                intent.setClass(getContext(), MovieRecommendActivity.class);
                 break;
             case 4:
                 intent.setClass(getContext(), MovieMusicActivity.class);

@@ -47,7 +47,9 @@ public class AlbumLVAdapter<T> extends BaseListViewAdapter {
         if (type.equals(FlagData.FLAG_MOVIEALBUM)){
             MovieAlbum movieAlbum = ((MovieAlbum) objects.get(position));
             holder.textView.setText(movieAlbum.getTitle());
-            if (position%2==0){
+            String thePhoto = movieAlbum.getThePhoto();
+            boolean b = thePhoto.startsWith("/ueditor");
+            if (b){
                 Picasso.with(context).load(Url.Head3+movieAlbum.getThePhoto()).into(holder.imageView);
             }else {
                 Picasso.with(context).load(Url.Head_VpPath+movieAlbum.getThePhoto()).into(holder.imageView);

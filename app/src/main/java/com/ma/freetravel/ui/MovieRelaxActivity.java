@@ -38,7 +38,7 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView() {
-        MovieLv alumDetail = (MovieLv) getIntent().getSerializableExtra("alumDetail");
+        MovieLv movieLv = (MovieLv) getIntent().getSerializableExtra("movieLv");
         toolbar = ((Toolbar) findViewById(R.id.toolBar_movieMusic));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
         share_iv = ((ImageView) findViewById(R.id.share_iv));
         dianzan_iv = ((ImageView) findViewById(R.id.dianzan_iv));
         collect_iv.setOnClickListener(this);
-        Picasso.with(this).load(Url.Head3+alumDetail.getPicURL())
+        Picasso.with(this).load(Url.Head3+movieLv.getPicURL())
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(Bitmap source) {
@@ -70,8 +70,8 @@ public class MovieRelaxActivity extends AppCompatActivity implements View.OnClic
                     }
                 })
                 .into(pic_iv);
-        title_tv.setText(alumDetail.getTitle());
-        String content = alumDetail.getContent();
+        title_tv.setText(movieLv.getTitle());
+        String content = movieLv.getContent();
         webView.loadDataWithBaseURL(null, content, "text/html", "utf-8",null);
     }
     public Bitmap toRoundBitmap(Bitmap bitmap) {

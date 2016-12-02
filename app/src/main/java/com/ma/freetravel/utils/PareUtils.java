@@ -57,17 +57,18 @@ public class PareUtils {
         if (object.equals(FlagData.FLAG_MOVIEBANNER)){
             List<MovieBanner>  movieBanners = gson.fromJson(jsonString, new TypeToken<List<MovieBanner>>() {}.getType());
             return movieBanners;
-        }else if (object.equals(FlagData.FLAG_MOVIELV)){
+        }else if (object.equals(FlagData.FLAG_MOVIELV)||object.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
             List<MovieLv>  movieLvs=gson.fromJson(jsonString, new TypeToken<List<MovieLv>>() {
             }.getType());
             return movieLvs;
         }else if (object.equals(FlagData.FLAG_MOVIEALBUM)){
             List<MovieAlbum> movieAlba=gson.fromJson(jsonString,new TypeToken<List<MovieAlbum>>(){}.getType());
             return movieAlba;
-        }else if (object.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
-            List<MovieLv> alumDetails=gson.fromJson(jsonString,new TypeToken<List<MovieLv>>(){}.getType());
-            return alumDetails;
         }
+//        else if (object.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
+//            List<MovieLv> alumDetails=gson.fromJson(jsonString,new TypeToken<List<MovieLv>>(){}.getType());
+//            return alumDetails;
+//        }
        return null;
     }
     //Gson解析{}

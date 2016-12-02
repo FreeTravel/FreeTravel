@@ -82,10 +82,12 @@ public class AlbumActivity extends MovieBaseActivity implements ICustom, Adapter
     @Override
     public void handleActionSuccess(String result, Object object) {
         List movieAlbum = PareUtils.getData1(result, object);
-        movieAlba.clear();
-        movieAlba.addAll(movieAlbum);
-        adapter.notifyDataSetChanged();
+//        movieAlba.clear();
+//        movieAlba.addAll(movieAlbum);
+//        adapter.notifyDataSetChanged();
+        adapter.addData(movieAlbum);
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -93,6 +95,8 @@ public class AlbumActivity extends MovieBaseActivity implements ICustom, Adapter
         Bundle bundle=new Bundle();
         bundle.putString("title",movieAlba.get(position).getTitle());
         bundle.putString("description",movieAlba.get(position).getDescription());
+        int filmAlbumID = movieAlba.get(position).getFilmAlbumID();
+        bundle.putInt("filmAlbumID", filmAlbumID);
         intent.putExtra("bundle",bundle);
         startActivity(intent);
     }

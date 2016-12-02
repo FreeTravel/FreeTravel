@@ -27,18 +27,20 @@ public class Url {
 //       http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=20&tmp=0.6318395610150874
        return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";
    }
+
     //轮播的下两步 电影合辑  具体
-    public static String Vp_three_Path(int pageNum){
+    public static String Vp_three_Path(int pageNum,int id){
 //        http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum=0&id=117&tmp=0.2841932578811236
-        return "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum="+pageNum+"&pagesize=20&tmp=0.6318395610150874";
+        return "http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum="+pageNum+"&id="+id+"&tmp=0.2841932578811236";
     }
     public static String Head3="http://apk.zdomo.com";
-    //轮播的后第三步 电影推荐   上一步电影合辑中的Content（是html5做好的 ）头部是LinkUrl是跳转一个网页
 
+    //轮播的后第三步 电影推荐   上一步电影合辑中的Content（是html5做好的 ）头部是LinkUrl是跳转一个网页
     public static String Vp_Path = "http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=4&tmp=0.5617492643658829";
 
     //轮播点击跳转
     public static String turnPath="http://apk.zdomo.com/api/ApiFilmAlbum?pagenum=0&pagesize=20&tmp=0.6233542039472624";
+
     //二次跳转     tmp=0.33767933309475884?
     public static String secondTurnPath="http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum=0&id=110&tmp=0.33767933309475884" ;
     //http://apk.zdomo.com/api/ApiFilmAlbum/?pageSize=20&pageNum=0&id=114&tmp=0.11219674811926295
@@ -46,6 +48,7 @@ public class Url {
     //listview的网址
     public static String lvPath="http://apk.zdomo.com/api/ApiBasic?pageSize=20&pageNum=0&tmp=0.06086050612584448";
     //listvie点击跳转 第二页的内容需要xml解析listview的Content属性
+
     //目的地
     public static String queryPath(String city) {
         try {

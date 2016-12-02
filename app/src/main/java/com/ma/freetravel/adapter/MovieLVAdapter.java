@@ -1,6 +1,7 @@
 package com.ma.freetravel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -14,9 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.Resource;
 import com.ma.freetravel.R;
-import com.ma.freetravel.bean.AlumDetail;
 import com.ma.freetravel.bean.MovieLv;
+import com.ma.freetravel.ui.MovieRecommendActivity;
 import com.ma.freetravel.url.Url;
 import com.ma.freetravel.utils.FlagData;
 import com.squareup.picasso.Picasso;
@@ -64,7 +66,7 @@ public class MovieLVAdapter<T> extends BaseListViewAdapter{
             }
             switch (columnID) {
                 case 1:
-                    holder.title_tv.setText(R.string.columnName1_movie);
+                    holder.title_tv.setText("["+context.getString(R.string.columnName1_movie)+"]");
                     break;
 //                case 2:
 //                    holder.title_tv.setText("[" + R.string.columnName2_movie + "]");
@@ -73,15 +75,15 @@ public class MovieLVAdapter<T> extends BaseListViewAdapter{
 //                    holder.title_tv.setText("[" + R.string.columnName3_movie + "]");
 //                    break;
                 case 4:
-                    holder.title_tv.setText("[" + R.string.columnName4_movie + "]");
+                    holder.title_tv.setText("["+context.getResources().getString(R.string.columnName4_movie)+"]");
                     break;
                 case 5:
-                    holder.title_tv.setText("[" + R.string.columnName5_movie + "]");
+                    holder.title_tv.setText("["+context.getResources().getString(R.string.columnName5_movie)+"]");
                     break;
             }
         }else if (type.equals(FlagData.FLAG_MOVIEALBUMDETAIL)){
-            AlumDetail alumDetail = (AlumDetail) objects.get(position);
-            Picasso.with(context).load(Url.Head3+alumDetail.getPicURL())
+            final MovieLv movieLv = ((MovieLv) objects.get(position));
+            Picasso.with(context).load(Url.Head3+movieLv.getPicURL())
                     .transform(new Transformation() {
                         @Override
                         public Bitmap transform(Bitmap source) {
@@ -98,8 +100,8 @@ public class MovieLVAdapter<T> extends BaseListViewAdapter{
                         }
                     })
                     .into(holder.iv);
-            holder.title_tv.setText(alumDetail.getIntroduction());
-            if (!TextUtils.isEmpty(alumDetail.getLinkUrl()))
+            holder.title_tv.setText(movieLv.getIntroduction());
+            if (!TextUtils.isEmpty(movieLv.getLinkUrl()))
                 holder.shipin_iv.setVisibility(View.VISIBLE);
         }
         return convertView;

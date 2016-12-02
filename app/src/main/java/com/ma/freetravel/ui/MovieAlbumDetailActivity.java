@@ -16,7 +16,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ma.freetravel.R;
 import com.ma.freetravel.adapter.MovieLVAdapter;
-import com.ma.freetravel.bean.AlumDetail;
+import com.ma.freetravel.bean.MovieLv;
 import com.ma.freetravel.jiekou.ICustom;
 import com.ma.freetravel.url.Url;
 import com.ma.freetravel.utils.FlagData;
@@ -29,13 +29,14 @@ import java.util.List;
 public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICustom, AdapterView.OnItemClickListener {
     private int pageNum = 0;
     private PullToRefreshListView ptrLv;
-    private List<AlumDetail> alumDetails;
+    private List<MovieLv> movieLvs;
     private Toolbar toolbar;
-    private MovieLVAdapter<AlumDetail> adapter;
+    private MovieLVAdapter<MovieLv> adapter;
     private TextView title_tv;
     private TextView content_tv;
     private String title;
     private String description;
+    private int filmAlbumID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,16 @@ public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICust
     }
 
     private void loadData() {
-        new OkHttpUtils(FlagData.FLAG_MOVIEALBUMDETAIL, this).loadData(Url.Vp_three_Path(pageNum));
+        new OkHttpUtils(FlagData.FLAG_MOVIEALBUMDETAIL, this).loadData(Url.Vp_three_Path(pageNum,filmAlbumID));
     }
 
     private void init() {
         Bundle bundle = getIntent().getBundleExtra("bundle");
         title = bundle.getString("title");
         description = bundle.getString("description");
-        alumDetails = new ArrayList<>();
+        filmAlbumID = bundle.getInt("filmAlbumID");
+        movieLvs=new ArrayList<>();
+
         ptrLv = ((PullToRefreshListView) findViewById(R.id.lv_albumDetail));
 
         toolbar = ((Toolbar) findViewById(R.id.toolbar_movieBase));
@@ -71,7 +74,8 @@ public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICust
         setEmptyView();
         setHeaderView();
         setFooterView();
-        adapter = new MovieLVAdapter<>(alumDetails, this, FlagData.FLAG_MOVIEALBUMDETAIL);
+//        adapter = new MovieLVAdapter<>(alumDetails, this, FlagData.FLAG_MOVIEALBUMDETAIL);
+        adapter = new MovieLVAdapter<>(movieLvs, this, FlagData.FLAG_MOVIEALBUMDETAIL);
         ptrLv.setAdapter(adapter);
         ptrLv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -79,7 +83,6 @@ public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICust
                 pageNum++;
                 loadData();
             }
-
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum++;
@@ -130,9 +133,10 @@ public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICust
     @Override
     public void handleActionSuccess(String result, Object object) {
         List data1 = PareUtils.getData1(result, FlagData.FLAG_MOVIEALBUMDETAIL);
-        alumDetails.clear();
-        alumDetails.addAll(data1);
-        adapter.notifyDataSetChanged();
+        movieLvs.clear();
+//        movieLvs.addAll(data1);
+//        adapter.notifyDataSetChanged();
+        adapter.addData(data1);
         if (ptrLv.isRefreshing()){
             ptrLv.postDelayed(new Runnable() {
                 @Override
@@ -145,9 +149,12 @@ public class MovieAlbumDetailActivity extends MovieBaseActivity implements ICust
 //listView的点击事件
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position==1 || position==parent.getCount()){
+            return;
+        }
         Intent intent=new Intent(this,MovieRecommendActivity.class);
-        AlumDetail alumDetail = alumDetails.get(position);
-        intent.putExtra("alumDetail",alumDetail);
+        MovieLv movieLv = movieLvs.get(position-2);
+        intent.putExtra("movieLv",movieLv);
         startActivity(intent);
     }
 }
